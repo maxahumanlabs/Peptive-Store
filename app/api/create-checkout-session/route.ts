@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'sk_test_placeholder', {
-  apiVersion: '2025-12-15.clover',
-});
+// apiVersion intentionally omitted — pin via the installed SDK's default so the
+// build doesn't break when the Stripe package version changes (npm vs pnpm).
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'sk_test_placeholder');
 
 export async function POST(request: NextRequest) {
   try {
