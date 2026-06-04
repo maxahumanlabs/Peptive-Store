@@ -432,11 +432,11 @@ export default function ProductDetailPage() {
                 </h3>
               </div>
             </div>
-            <div className="space-y-2 lg:space-y-2 xl:space-y-2 2xl:space-y-3">
+            <div className="space-y-4 lg:space-y-4 xl:space-y-4 2xl:space-y-5">
               {bundleOptions.map((bundle) => (
                 <label
                   key={bundle.id}
-                  className={`relative flex items-center p-3 lg:p-3 xl:p-3 2xl:p-4 rounded-xl border-2 cursor-pointer transition-all ${
+                  className={`relative flex items-center p-5 lg:p-5 xl:p-5 2xl:p-6 rounded-xl border-2 cursor-pointer transition-all ${
                     selectedBundle === bundle.id
                       ? 'border-black bg-white'
                       : 'border-transparent bg-gray-100 hover:bg-gray-200'
@@ -482,14 +482,14 @@ export default function ProductDetailPage() {
                     </div>
                   </div>
                   {bundle.isPopular && (
-                    <div className="absolute -top-7 -right-7 w-[58px] h-[58px] flex flex-col items-center justify-center bg-black text-white rounded-full shadow-lg rotate-[10deg] z-10">
-                      <span className="text-yellow-200 text-[8px] leading-none">✦</span>
-                      <span className="flex flex-col items-center text-center text-xs leading-[1.0]" style={{ fontFamily: 'var(--font-script)' }}>
+                    <div className="absolute -top-4 -right-3 flex items-center gap-1.5 bg-black text-white px-4 py-2 rounded-[50%] shadow-lg rotate-[10deg] z-10">
+                      <span className="text-yellow-200 text-[10px]">✦</span>
+                      <span className="flex flex-col items-center text-center text-sm leading-[1.05]" style={{ fontFamily: 'var(--font-script)' }}>
                         {t('product_detail.most_popular').split(' ').map((word, i) => (
                           <span key={i}>{word}</span>
                         ))}
                       </span>
-                      <span className="text-yellow-200 text-[8px] leading-none">✦</span>
+                      <span className="text-yellow-200 text-[10px]">✦</span>
                     </div>
                   )}
                 </label>
