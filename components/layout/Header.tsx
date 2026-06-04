@@ -14,11 +14,15 @@ import MobileLanguageToggle from '@/components/MobileLanguageToggle';
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // Avoids hydration mismatch: the cart count comes from localStorage (client
+  // only), so the badge must render only after mount.
+  const [mounted, setMounted] = useState(false);
   const itemCount = useCartStore((state) => state.getItemCount());
   const toggleCart = useCartStore((state) => state.toggleCart);
   const { t } = useLanguage();
 
   useEffect(() => {
+    setMounted(true);
     // Check if user is logged in
     setIsLoggedIn(authAPI.isLoggedIn());
   }, []);
@@ -109,7 +113,7 @@ export default function Header() {
                   d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
                 />
               </svg>
-              {itemCount > 0 && (
+              {mounted && itemCount > 0 && (
                 <span className="absolute -top-1 -right-1 bg-gray-900 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
                   {itemCount}
                 </span>
