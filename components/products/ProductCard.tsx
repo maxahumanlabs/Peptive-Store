@@ -65,17 +65,17 @@ export default function ProductCard({ product }: ProductCardProps) {
       <div className="bg-gray-50 p-5">
         <div className="flex items-start justify-between mb-2 gap-3">
           <div className="flex-1 min-w-0">
-            <p className="text-gray-500 text-xs lg:text-sm xl:text-sm mb-1 uppercase tracking-wide">
+            <p className="text-gray-500 text-[10px] lg:text-xs xl:text-xs mb-1 uppercase tracking-wide">
               Peptive
             </p>
             <h3 className="text-gray-900 text-base lg:text-lg xl:text-xl font-medium break-words">{productName}</h3>
           </div>
           <div className="text-right flex-shrink-0">
-            <p className="text-red-500 font-semibold text-base lg:text-lg xl:text-xl whitespace-nowrap">
+            <p className="text-red-500 font-semibold text-sm lg:text-base xl:text-base whitespace-nowrap">
               Dhs. {parseFloat(product.price).toFixed(2)}
             </p>
             {product.onSale && product.regularPrice && parseFloat(product.regularPrice) > parseFloat(product.price) && (
-              <p className="relative inline-block text-gray-400 text-sm lg:text-base xl:text-lg whitespace-nowrap">
+              <p className="relative inline-block text-gray-400 text-xs lg:text-sm xl:text-sm whitespace-nowrap">
                 Dhs. {parseFloat(product.regularPrice).toFixed(2)}
                 <span
                   aria-hidden="true"
