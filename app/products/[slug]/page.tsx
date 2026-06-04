@@ -250,7 +250,7 @@ export default function ProductDetailPage() {
         </div>
 
         {/* Right Column - Product Details */}
-        <div className="space-y-5 lg:space-y-5 xl:space-y-5 2xl:space-y-6">
+        <div className="flex flex-col gap-5 lg:gap-5 xl:gap-5 2xl:gap-6">
           {/* Product Name & Price */}
           <div className="flex items-start justify-between gap-4">
             <div className="min-w-0">
@@ -303,7 +303,9 @@ export default function ProductDetailPage() {
             </div>
           )}
 
-          {/* Product Description */}
+          {/* Product Description — on mobile it moves below the buy buttons so the
+              client can purchase without scrolling past the long description */}
+          <div className="order-last lg:order-none flex flex-col gap-4">
 
           {/* Short Description First */}
           {productShortDescription && (
@@ -377,6 +379,7 @@ export default function ProductDetailPage() {
               }
             })()
           )}
+          </div>
 
           {/* Stock Status */}
           {isOutOfStock ? (
@@ -479,10 +482,12 @@ export default function ProductDetailPage() {
                     </div>
                   </div>
                   {bundle.isPopular && (
-                    <div className="absolute -top-3 -right-2 flex items-center gap-1.5 bg-black text-white px-4 py-2 rounded-[50%] shadow-lg rotate-[-3deg]">
+                    <div className="absolute -top-4 -right-3 flex items-center gap-1.5 bg-black text-white px-4 py-2 rounded-[50%] shadow-lg rotate-[10deg]">
                       <span className="text-yellow-200 text-[10px]">✦</span>
-                      <span className="text-sm leading-none whitespace-nowrap" style={{ fontFamily: 'var(--font-script)' }}>
-                        {t('product_detail.most_popular')}
+                      <span className="flex flex-col items-center text-center text-sm leading-[1.05]" style={{ fontFamily: 'var(--font-script)' }}>
+                        {t('product_detail.most_popular').split(' ').map((word, i) => (
+                          <span key={i}>{word}</span>
+                        ))}
                       </span>
                       <span className="text-yellow-200 text-[10px]">✦</span>
                     </div>
