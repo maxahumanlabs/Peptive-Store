@@ -484,7 +484,7 @@ export default function ProductDetailPage() {
                     </div>
                   </div>
                   {bundle.isPopular && (
-                    <div className="absolute -top-7 -right-3 flex items-center gap-1.5 bg-black text-white px-4 py-2 rounded-[50%] shadow-lg rotate-[10deg] z-10">
+                    <div className="absolute -top-6 -right-3 flex items-center gap-1.5 bg-black text-white px-4 py-2 rounded-[50%] shadow-lg rotate-[10deg] z-10">
                       <span className="text-yellow-200 text-[10px]">✦</span>
                       <span className="flex flex-col items-center text-center text-sm leading-[1.05]" style={{ fontFamily: 'var(--font-script)' }}>
                         {t('product_detail.most_popular').split(' ').map((word, i) => (
