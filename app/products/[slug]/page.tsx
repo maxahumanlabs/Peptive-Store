@@ -432,7 +432,7 @@ export default function ProductDetailPage() {
                 </h3>
               </div>
             </div>
-            <div className="space-y-4 lg:space-y-4 xl:space-y-4 2xl:space-y-5">
+            <div className="space-y-2 lg:space-y-2 xl:space-y-2 2xl:space-y-2">
               {bundleOptions.map((bundle) => (
                 <label
                   key={bundle.id}
