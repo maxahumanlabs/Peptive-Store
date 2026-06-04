@@ -265,10 +265,10 @@ export const translations = {
       secure_payment_desc: "You will be redirected to Stripe's secure checkout to complete your payment."
     },
     bundle: {
-      one_month: "1 month",
+      one_month: "1 months",
       three_months: "3 months",
       six_months: "6 months",
-      buy_now: "Buy Now"
+      buy_now: "Buy it now"
     }
   },
   ar: {

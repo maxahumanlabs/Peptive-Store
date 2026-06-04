@@ -433,10 +433,10 @@ export default function ProductDetailPage() {
               {bundleOptions.map((bundle) => (
                 <label
                   key={bundle.id}
-                  className={`relative flex items-center p-3 lg:p-3 xl:p-3 2xl:p-4 rounded-xl border cursor-pointer transition-all ${
+                  className={`relative flex items-center p-3 lg:p-3 xl:p-3 2xl:p-4 rounded-xl border-2 cursor-pointer transition-all ${
                     selectedBundle === bundle.id
-                      ? 'border-gray-900 bg-gray-50'
-                      : 'border-gray-300 bg-white hover:border-gray-400'
+                      ? 'border-black bg-white'
+                      : 'border-transparent bg-gray-100 hover:bg-gray-200'
                   }`}
                 >
                   <input
@@ -445,30 +445,33 @@ export default function ProductDetailPage() {
                     value={bundle.id}
                     checked={selectedBundle === bundle.id}
                     onChange={(e) => setSelectedBundle(e.target.value)}
-                    className="w-4 h-4 text-gray-900 focus:ring-gray-900 flex-shrink-0"
+                    className="w-4 h-4 accent-black flex-shrink-0"
                   />
                   <div className="flex-1 ml-3">
                     <div className="flex items-center justify-between gap-4">
-                      <div className="flex-1">
-                        <div className="text-sm md:text-base lg:text-base xl:text-base font-bold text-gray-900">
-                          {bundle.label}
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span className="text-sm md:text-base lg:text-base xl:text-base font-bold text-gray-900">
+                            {bundle.label}
+                          </span>
+                          {bundle.months > 1 && (bundle.savings ?? 0) > 0 && (
+                            <span className="bg-gray-200 text-gray-700 text-[11px] font-semibold px-2 py-0.5 rounded-md whitespace-nowrap">
+                              {t('product_detail.save')} {formatPrice(bundle.savings ?? 0)}
+                            </span>
+                          )}
                         </div>
-                        {bundle.savings && bundle.savings > 0 ? (
-                          <div className="text-xs md:text-xs lg:text-xs xl:text-xs text-[#4d7c0f] font-medium">
-                            {t('product_detail.you_save')} {formatPrice(bundle.savings)} ({bundle.savingsPercent}%)
-                          </div>
-                        ) : (
-                          <div className="text-xs md:text-xs lg:text-xs xl:text-xs text-gray-500">
-                            {t('product_detail.standard_price')}
-                          </div>
-                        )}
+                        <div className="text-xs md:text-xs lg:text-xs xl:text-xs text-gray-500 mt-0.5">
+                          {bundle.months > 1 && (bundle.savings ?? 0) > 0
+                            ? `${t('product_detail.you_save')} ${bundle.savingsPercent}%`
+                            : t('product_detail.standard_price')}
+                        </div>
                       </div>
                       <div className="text-right flex-shrink-0">
                         <div className="text-base md:text-lg lg:text-lg xl:text-lg font-bold text-gray-900">
                           {formatPrice(bundle.price)}
                         </div>
-                        {bundle.savings && bundle.savings > 0 && (
-                          <div className="text-xs md:text-xs lg:text-xs xl:text-xs text-gray-500 line-through">
+                        {originalPrice * bundle.months > bundle.price && (
+                          <div className="text-xs md:text-xs lg:text-xs xl:text-xs text-gray-400 line-through">
                             {formatPrice(originalPrice * bundle.months)}
                           </div>
                         )}
@@ -476,8 +479,12 @@ export default function ProductDetailPage() {
                     </div>
                   </div>
                   {bundle.isPopular && (
-                    <div className="absolute -top-2 -right-2 bg-black text-white px-2 py-1 rounded-full text-[10px] md:text-xs font-bold">
-                      {t('product_detail.most_popular')}
+                    <div className="absolute -top-3 -right-2 flex items-center gap-1.5 bg-black text-white px-4 py-2 rounded-[50%] shadow-lg rotate-[-3deg]">
+                      <span className="text-yellow-200 text-[10px]">✦</span>
+                      <span className="text-sm leading-none whitespace-nowrap" style={{ fontFamily: 'var(--font-script)' }}>
+                        {t('product_detail.most_popular')}
+                      </span>
+                      <span className="text-yellow-200 text-[10px]">✦</span>
                     </div>
                   )}
                 </label>
@@ -500,7 +507,11 @@ export default function ProductDetailPage() {
                 className="w-full relative overflow-hidden bg-black text-white text-sm md:text-base lg:text-base xl:text-base py-4 lg:py-4 xl:py-4 2xl:py-5 px-6 rounded-full group border-2 border-black"
               >
                 <span className="absolute inset-0 bg-white origin-bottom scale-y-0 group-hover:scale-y-100 transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] rounded-full z-0"></span>
-                <span className="relative z-10 group-hover:text-black transition-colors duration-400">{t('product_detail.add_to_cart')}</span>
+                <span className="relative z-10 group-hover:text-black transition-colors duration-400">
+                  {t('product_detail.add_to_cart')}
+                  {'  -  '}
+                  {formatPrice(bundleOptions.find((b) => b.id === selectedBundle)?.price ?? product.price)}
+                </span>
               </button>
             )}
             
@@ -522,7 +533,7 @@ export default function ProductDetailPage() {
                 );
               }}
               disabled={isOutOfStock}
-              className="w-full flex items-center justify-center bg-black text-white text-sm md:text-base py-4 lg:py-4 xl:py-4 2xl:py-5 px-6 rounded-full mt-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full flex items-center justify-center bg-white text-gray-900 border-2 border-black text-sm md:text-base font-semibold py-4 lg:py-4 xl:py-4 2xl:py-5 px-6 rounded-full mt-2 hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <span className="flex items-center">
                 <span>{t('bundle.buy_now')}</span>

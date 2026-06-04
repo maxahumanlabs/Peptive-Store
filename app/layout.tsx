@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, Pacifico } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
@@ -8,10 +8,16 @@ import AnnouncementBar from '@/components/layout/AnnouncementBar';
 import WelcomePopup from '@/components/WelcomePopup';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 
-const inter = Inter({ 
+const inter = Inter({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700', '800', '900'],
   variable: '--font-inter'
+});
+
+const pacifico = Pacifico({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-script'
 });
 
 export const metadata: Metadata = {
@@ -32,7 +38,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} ${inter.variable}`}>
+      <body className={`${inter.className} ${inter.variable} ${pacifico.variable}`}>
         <LanguageProvider>
         <div className="flex flex-col min-h-screen">
           <AnnouncementBar />

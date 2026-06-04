@@ -24,7 +24,10 @@ export function decodeHtmlEntities(text: string): string {
 // Format price to currency string (UAE Dirham)
 export function formatPrice(price: string | number): string {
   const numPrice = typeof price === 'string' ? parseFloat(price) : price;
-  return `Dhs. ${numPrice.toFixed(2)}`;
+  return `Dhs. ${(numPrice || 0).toLocaleString('en-US', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })}`;
 }
 
 // Calculate cart total
