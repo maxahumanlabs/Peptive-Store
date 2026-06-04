@@ -454,20 +454,22 @@ export default function ProductDetailPage() {
                     <div className="flex items-center justify-between gap-4">
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 flex-wrap">
-                          <span className="text-sm md:text-base lg:text-base xl:text-base font-bold text-gray-900">
+                          <span className="text-base md:text-lg lg:text-lg xl:text-lg font-bold text-gray-900">
                             {bundle.label}
                           </span>
-                          {bundle.months > 1 && (bundle.savings ?? 0) > 0 && (
+                          {bundle.months === 3 && (bundle.savings ?? 0) > 0 && (
                             <span className="bg-gray-200 text-gray-700 text-[11px] font-semibold px-2 py-0.5 rounded-md whitespace-nowrap">
                               {t('product_detail.save')} {formatPrice(bundle.savings ?? 0)}
                             </span>
                           )}
                         </div>
-                        <div className="text-xs md:text-xs lg:text-xs xl:text-xs text-gray-500 mt-0.5">
-                          {bundle.months > 1 && (bundle.savings ?? 0) > 0
-                            ? `${t('product_detail.you_save')} ${bundle.savingsPercent}%`
-                            : t('product_detail.standard_price')}
-                        </div>
+                        {bundle.months !== 6 && (
+                          <div className="text-xs md:text-xs lg:text-xs xl:text-xs text-gray-500 mt-0.5">
+                            {bundle.months === 3 && (bundle.savings ?? 0) > 0
+                              ? `${t('product_detail.you_save')} ${bundle.savingsPercent}%`
+                              : t('product_detail.standard_price')}
+                          </div>
+                        )}
                       </div>
                       <div className="text-right flex-shrink-0">
                         <div className="text-base md:text-lg lg:text-lg xl:text-lg font-bold text-gray-900">
@@ -482,7 +484,7 @@ export default function ProductDetailPage() {
                     </div>
                   </div>
                   {bundle.isPopular && (
-                    <div className="absolute -top-4 -right-3 flex items-center gap-1.5 bg-black text-white px-4 py-2 rounded-[50%] shadow-lg rotate-[10deg] z-10">
+                    <div className="absolute -top-7 -right-3 flex items-center gap-1.5 bg-black text-white px-4 py-2 rounded-[50%] shadow-lg rotate-[10deg] z-10">
                       <span className="text-yellow-200 text-[10px]">✦</span>
                       <span className="flex flex-col items-center text-center text-sm leading-[1.05]" style={{ fontFamily: 'var(--font-script)' }}>
                         {t('product_detail.most_popular').split(' ').map((word, i) => (
