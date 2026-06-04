@@ -172,14 +172,18 @@ export default function HomePage() {
           {/* Content */}
           <div className="relative px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-32 pb-12 md:pb-16 pt-12 md:pt-52">
             <div className="max-w-2xl pb-4">
-              <p className="text-yellow-500 text-xs md:text-xs lg:text-xs xl:text-sm 2xl:text-sm font-medium tracking-[0.25em] mb-2 uppercase">
-                {t('hero.tagline')}
-              </p>
               <h1 className="text-3xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold mb-4 leading-[1.15]">
-                {t('hero.title')}
+                <span className="block overflow-hidden pb-1">
+                  <span className="block animate-hero-reveal">{t('hero.title')}</span>
+                </span>
               </h1>
-              <p className="text-gray-200 text-sm md:text-base lg:text-base xl:text-lg 2xl:text-xl mb-8 leading-relaxed max-w-lg">
+              <p className="text-gray-200 text-sm md:text-base lg:text-base xl:text-lg 2xl:text-xl mb-4 leading-relaxed max-w-lg">
+                {t('hero.purity')}
+                <strong className="font-semibold text-white">{t('hero.research_use')}</strong>
                 {t('hero.description')}
+              </p>
+              <p className="text-gray-300 text-xs md:text-sm lg:text-sm xl:text-base mb-8 leading-relaxed max-w-lg">
+                {t('hero.disclaimer')}
               </p>
               <Link href="/products">
                 <button className="relative inline-flex items-center bg-white text-gray-900 px-12 py-3.5 text-sm lg:text-sm xl:text-base 2xl:text-lg font-semibold rounded-full overflow-hidden group transition-colors">

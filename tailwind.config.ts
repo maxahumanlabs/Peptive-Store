@@ -23,6 +23,15 @@ const config: Config = {
           950: '#082f49',
         },
       },
+      keyframes: {
+        'hero-reveal': {
+          '0%': { opacity: '0', transform: 'translateY(110%)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+      },
+      animation: {
+        'hero-reveal': 'hero-reveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) both',
+      },
     },
   },
   plugins: [],

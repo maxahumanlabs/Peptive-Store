@@ -16,7 +16,10 @@ export const translations = {
     hero: {
       tagline: "Science They Can't Silent",
       title: "Precision Crafted Research Peptides",
-      description: "High-purity compounds. Independent lab verification. Trusted by researchers seeking uncompromised quality.",
+      purity: "99+% purity ",
+      research_use: "For Research use only.",
+      description: " Trusted by researchers seeking uncompromised quality",
+      disclaimer: "By using this site or ordering, you confirm you are 21+, a qualified professional, and you agree to our Terms of Service and Research Disclaimer.",
       cta: "Shop All"
     },
     brand: {
@@ -284,7 +287,10 @@ export const translations = {
     hero: {
       tagline: "العلم الذي لا يمكنهم إسكاته",
       title: "ببتيدات بحثية مصممة بدقة",
-      description: "مركبات عالية النقاء. تم التحقق منها من قبل مختبر مستقل. موثوق بها من قبل الباحثين الذين يسعون إلى جودة لا مثيل لها.",
+      purity: "نقاء +99% ",
+      research_use: "للاستخدام البحثي فقط.",
+      description: " موثوق بها من قبل الباحثين الذين يسعون إلى جودة لا مثيل لها",
+      disclaimer: "باستخدامك هذا الموقع أو إتمام الطلب، فإنك تؤكد أنك بعمر 21 عاماً أو أكثر، وأنك مختص مؤهّل، وتوافق على شروط الخدمة وإخلاء المسؤولية البحثي.",
       cta: "تسوق الكل"
     },
     brand: {
