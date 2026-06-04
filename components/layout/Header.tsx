@@ -38,7 +38,7 @@ export default function Header() {
   const navigation = [
     { name: t('header.home'), href: '/' },
     { name: t('header.all_peptides'), href: '/all' },
-    { name: t('header.oral_peptides'), href: '/oral-peptides' },
+    { name: t('header.oral_peptides'), href: '/oral' },
     // { name: t('stack.title'), href: '/stack' },
     { name: t('header.dosage_calculator'), href: '/pages/dosage-calculator' },
     { name: t('header.peptive_ai'), href: 'https://ai.peptivepeptides.com/' },
