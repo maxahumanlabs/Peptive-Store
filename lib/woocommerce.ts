@@ -190,16 +190,13 @@ class WooCommerceAPI {
     search?: string;
   }): Promise<Product[]> {
     try {
-      // Use Store API instead of REST API v3
-      // 'all' is a UI-only pseudo-category meaning "no filter" — don't send it
-      const category =
-        params?.category && params.category !== 'all' ? params.category : undefined;
-
+      // Use Store API instead of REST API v3.
+      // The category param is a WooCommerce category slug (e.g. 'all', 'oral').
       const response = await this.storeClient.get<StoreAPIProduct[]>('/products', {
         params: {
           page: params?.page || 1,
           per_page: params?.perPage || 12,
-          category,
+          category: params?.category,
           featured: params?.featured,
           on_sale: params?.onSale,
           search: params?.search,
