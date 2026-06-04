@@ -9,6 +9,7 @@ import { useCartStore } from '@/store/cartStore';
 import { formatPrice } from '@/lib/utils';
 import { openWhatsAppOrder } from '@/lib/whatsapp';
 import RelatedProducts from '@/components/products/RelatedProducts';
+import ProductRecommendations from '@/components/products/ProductRecommendations';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 type BundleOption = {
@@ -209,8 +210,9 @@ export default function ProductDetailPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50 px-4 md:px-12 lg:px-12 xl:px-12 2xl:px-48 pt-4 md:pt-6 lg:pt-6 xl:pt-6 2xl:pt-8 pb-16 md:pb-20 lg:pb-20 xl:pb-20 2xl:pb-24">
       <div className="grid lg:grid-cols-[2fr_1fr] gap-12 lg:gap-12 xl:gap-12 2xl:gap-16">
-        {/* Left Column - Images */}
-        <div className="space-y-4 lg:space-y-4 xl:space-y-4 2xl:space-y-6">
+        {/* Left Column - Images — sticks below the header on desktop while the
+            taller text column scrolls, so both finish together */}
+        <div className="space-y-4 lg:space-y-4 xl:space-y-4 2xl:space-y-6 lg:sticky lg:top-24 lg:self-start">
           {/* Main Image */}
           <div className="relative aspect-[4/5] rounded-3xl overflow-hidden">
             <Image
@@ -550,7 +552,8 @@ export default function ProductDetailPage() {
         </div>
       </div>
 
-      
+      {/* You may also like to add for MORE RESULTS */}
+      <ProductRecommendations currentProductId={product.id} />
     </div>
   );
 }
