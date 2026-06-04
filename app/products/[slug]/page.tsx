@@ -203,18 +203,21 @@ export default function ProductDetailPage() {
 
   const isOutOfStock = product.stockStatus === 'outofstock';
 
+  // Toggle to show/hide the rating row (hidden to match the reference design)
+  const SHOW_RATING = false;
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50 px-4 md:px-12 lg:px-12 xl:px-12 2xl:px-48 py-16 md:py-20 lg:py-20 xl:py-20 2xl:py-24">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50 px-4 md:px-12 lg:px-12 xl:px-12 2xl:px-48 pt-4 md:pt-6 lg:pt-6 xl:pt-6 2xl:pt-8 pb-16 md:pb-20 lg:pb-20 xl:pb-20 2xl:pb-24">
       <div className="grid lg:grid-cols-2 gap-12 lg:gap-12 xl:gap-12 2xl:gap-16">
         {/* Left Column - Images */}
         <div className="space-y-4 lg:space-y-4 xl:space-y-4 2xl:space-y-6">
           {/* Main Image */}
-          <div className="relative aspect-square rounded-3xl overflow-hidden">
+          <div className="relative aspect-[4/5] rounded-3xl overflow-hidden">
             <Image
               src={product.images[selectedImage] || product.image}
               alt={productName}
               fill
-              className="object-contain p-4"
+              className="object-cover"
               sizes="(max-width: 1024px) 100vw, 50vw"
               priority
             />
@@ -250,28 +253,35 @@ export default function ProductDetailPage() {
         <div className="space-y-5 lg:space-y-5 xl:space-y-5 2xl:space-y-6">
           {/* Product Name & Price */}
           <div className="flex items-start justify-between gap-4">
-            <h1 className="text-3xl md:text-4xl lg:text-4xl xl:text-4xl 2xl:text-5xl  text-gray-900">
-              {productName}
-            </h1>
+            <div className="min-w-0">
+              <p className="text-gray-500 text-xs lg:text-sm mb-1 uppercase tracking-wide">
+                Peptive
+              </p>
+              <h1 className="text-3xl md:text-4xl lg:text-4xl xl:text-4xl 2xl:text-5xl font-bold text-gray-900">
+                {productName}
+              </h1>
+            </div>
             <div className="text-right flex-shrink-0">
-              <div className="text-2xl md:text-3xl lg:text-3xl xl:text-3xl 2xl:text-4xl  text-pink-600">
+              <div className="text-xl md:text-2xl lg:text-2xl xl:text-2xl 2xl:text-3xl font-bold text-gray-900">
                 {formatPrice(product.price)}
               </div>
               {product.onSale && (
-                <div className="text-base md:text-lg lg:text-lg xl:text-lg 2xl:text-xl text-gray-500 line-through">
+                <div className="text-sm md:text-base lg:text-base xl:text-base text-gray-400 line-through">
                   {formatPrice(product.regularPrice)}
                 </div>
               )}
             </div>
           </div>
 
-          {/* Rating - Hardcoded */}
-          <div className="flex items-center gap-2">
-            <span className="text-yellow-400 text-lg">⭐</span>
-            <span className="text-sm md:text-base lg:text-base xl:text-base font-semibold text-gray-900">
-              4.9/5 (2869 {t('product_detail.reviews')})
-            </span>
-          </div>
+          {/* Rating - Hardcoded (hidden via SHOW_RATING flag) */}
+          {SHOW_RATING && (
+            <div className="flex items-center gap-2">
+              <span className="text-yellow-400 text-lg">⭐</span>
+              <span className="text-sm md:text-base lg:text-base xl:text-base font-semibold text-gray-900">
+                4.9/5 (2869 {t('product_detail.reviews')})
+              </span>
+            </div>
+          )}
 
           {/* Badges */}
           {product.tags && product.tags.length > 0 && (
@@ -310,13 +320,37 @@ export default function ProductDetailPage() {
               const hasStructuredContent = productDescription.includes('Contains:') || productDescription.includes('Instructions:');
               
               if (hasStructuredContent) {
+                // Convert block/break tags to newlines so list items stay on
+                // separate lines instead of collapsing into one.
+                const htmlToText = (html: string) => html
+                  .replace(/<\s*br\s*\/?>/gi, '\n')
+                  .replace(/<\/(p|li|div|h[1-6]|ul|ol)>/gi, '\n')
+                  .replace(/<[^>]+>/g, '')
+                  .replace(/&nbsp;/gi, ' ')
+                  .replace(/\n{3,}/g, '\n\n')
+                  .trim();
+
+                // Intro = everything before the "Contains:" heading (rendered as
+                // HTML so the bold sub-heading is preserved). Trailing unclosed
+                // opening tags are stripped so nothing leaks.
+                const containsIdx = productDescription.search(/Contains:/i);
+                const introHtml = containsIdx > 0
+                  ? productDescription.slice(0, containsIdx).replace(/(?:\s*<(?:p|strong|b|h[1-6]|span)>\s*)+$/i, '').trim()
+                  : '';
+
                 // Extract sections using regex (without 's' flag for ES compatibility)
                 const containsMatch = productDescription.match(/Contains:([\s\S]*?)(Instructions:|$)/i);
                 const instructionsMatch = productDescription.match(/Instructions:([\s\S]*?)(<\/p>|$)/i);
-                const contains = containsMatch ? containsMatch[1].replace(/<[^>]+>/g, '').trim() : '';
-                const instructions = instructionsMatch ? instructionsMatch[1].replace(/<[^>]+>/g, '').trim() : '';
+                const contains = containsMatch ? htmlToText(containsMatch[1]) : '';
+                const instructions = instructionsMatch ? htmlToText(instructionsMatch[1]) : '';
                 return (
                   <div className="mt-4 space-y-4">
+                    {introHtml && (
+                      <div
+                        className="text-sm md:text-sm text-gray-800 [&_p]:mb-2 [&_strong]:font-bold [&_strong]:text-gray-900"
+                        dangerouslySetInnerHTML={{ __html: introHtml }}
+                      />
+                    )}
                     {contains && (
                       <div>
                         <div className="font-bold text-sm md:text-sm text-gray-900 mb-1">{t('product_detail.contains')}</div>
@@ -358,6 +392,30 @@ export default function ProductDetailPage() {
               <span className="text-[#4d7c0f] font-medium text-sm md:text-base">{t('product_detail.in_stock')}</span>
             </div>
           )}
+
+          {/* Order on WhatsApp - primary CTA */}
+          <button
+            onClick={() => {
+              const bundle = bundleOptions.find(b => b.id === selectedBundle);
+              if (!product || !bundle) return;
+              openWhatsAppOrder(
+                [
+                  {
+                    name: product.name,
+                    arabicName: (product as any).arabic_name || '',
+                    price: bundle.price,
+                    quantity: 1,
+                    bundleLabel: bundle.label,
+                  },
+                ],
+                language
+              );
+            }}
+            disabled={isOutOfStock}
+            className="w-full flex items-center justify-center gap-2 bg-black text-white text-sm md:text-base font-semibold py-4 lg:py-4 xl:py-4 2xl:py-5 px-6 rounded-full hover:bg-gray-900 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {t('product_detail.order_whatsapp')}
+          </button>
 
           {/* Bundle Options */}
           <div className="pt-4">
