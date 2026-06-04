@@ -16,6 +16,12 @@ const nextConfig = {
       },
     ],
   },
+  async rewrites() {
+    return [
+      // "All Peptides" menu uses /all but serves the products listing page
+      { source: '/all', destination: '/products' },
+    ];
+  },
 };
 
 export default nextConfig;
