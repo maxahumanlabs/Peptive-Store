@@ -134,15 +134,17 @@ export default function Footer() {
 
       {/* Bottom Bar Section */}
       <div className="bg-[#1f1f1f] py-4">
-        <div className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48 flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="flex items-center gap-4 text-gray-500 text-sm">
-            <span>©{currentYear} Peptive Pept.</span>
-            <Link href="/privacy-policy" className="text-white hover:text-white/70 transition-colors">
-              {t('footer.privacy_policy')}
-            </Link>
-            <Link href="/terms-of-service" className="text-white hover:text-white/70 transition-colors">
-              {t('footer.terms_of_service')}
-            </Link>
+        <div className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48 flex justify-center md:justify-start">
+          <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4 text-sm text-center">
+            <span className="text-white">©{currentYear} Peptive Pept.</span>
+            <div className="flex items-center gap-4">
+              <Link href="/privacy-policy" className="text-white hover:text-white/70 transition-colors">
+                {t('footer.privacy_policy')}
+              </Link>
+              <Link href="/terms-of-service" className="text-white hover:text-white/70 transition-colors">
+                {t('footer.terms_of_service')}
+              </Link>
+            </div>
           </div>
         </div>
       </div>
