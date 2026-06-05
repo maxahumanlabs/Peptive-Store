@@ -10,6 +10,7 @@ import { formatPrice } from '@/lib/utils';
 import { openWhatsAppOrder } from '@/lib/whatsapp';
 import RelatedProducts from '@/components/products/RelatedProducts';
 import ProductRecommendations from '@/components/products/ProductRecommendations';
+import FloatingAddToCart from '@/components/products/FloatingAddToCart';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 type BundleOption = {
@@ -554,6 +555,9 @@ export default function ProductDetailPage() {
 
       {/* You may also like to add for MORE RESULTS */}
       <ProductRecommendations currentProductId={product.id} />
+
+      {/* Floating upsell card */}
+      <FloatingAddToCart currentProductId={product.id} />
     </div>
   );
 }
