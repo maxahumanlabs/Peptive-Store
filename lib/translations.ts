@@ -1,6 +1,11 @@
 export const translations = {
   en: {
     announcement_bar: "GET 10% OFF Code: \"PEP10\"",
+    announcement: {
+      offer: "GET 10% OFF Code: \"PEP10\"",
+      uae: "FREE NEXT DAY SHIPPING TO UAE ON ALL ORDERS",
+      saudi: "FAST SHIPPING IN SAUDI ON ALL ORDERS"
+    },
     header: {
       home: "Home",
       all_peptides: "All Peptides",
@@ -205,7 +210,7 @@ export const translations = {
       please_wait: "Please wait..."
     },
     moving_text: {
-      stimulating_peptides: "Stimulating Peptides",
+      stimulating_peptides: "Peptive Peptides",
       research_grade_peptides: "Research Grade Peptides"
     },
     instant_authentication: {
@@ -275,6 +280,11 @@ export const translations = {
   },
   ar: {
     announcement_bar: "أهلاً بكم في مستقبل علم الأحياء",
+    announcement: {
+      offer: "احصل على خصم 10% بالكود: \"PEP10\"",
+      uae: "شحن مجاني في اليوم التالي لكل الطلبات داخل الإمارات",
+      saudi: "شحن سريع داخل السعودية على كل الطلبات"
+    },
     header: {
       home: "بيتبيت",
       all_peptides: "جميع الببتيدات",
