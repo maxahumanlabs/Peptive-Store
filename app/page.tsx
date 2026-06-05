@@ -160,7 +160,7 @@ export default function HomePage() {
           <div 
             className="absolute inset-0 bg-cover bg-center opacity-40"
             style={{
-              backgroundImage: "url('/banner.png')",
+              backgroundImage: "url('/hero.webp')",
               transform: `translateX(${scrollY * 0.15}px)`,
               transition: 'transform 0.1s ease-out'
             }}
