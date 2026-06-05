@@ -64,7 +64,7 @@ export default function ProductRecommendations({ currentProductId }: ProductReco
 
       <div className="flex justify-center mt-8">
         <Link
-          href="/all"
+          href="/collections/all"
           className="inline-flex items-center gap-2 border border-gray-900 rounded-full px-8 py-3 text-sm md:text-base font-semibold text-gray-900 hover:bg-gray-50 transition-colors"
         >
           {t('product_detail.view_all')}

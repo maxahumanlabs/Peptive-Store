@@ -18,10 +18,16 @@ const nextConfig = {
   },
   async rewrites() {
     return [
-      // "All Peptides" menu uses /all but serves the products listing page
-      { source: '/all', destination: '/products' },
-      // "Oral Peptides" menu uses /oral but serves the oral-peptides page
-      { source: '/oral', destination: '/oral-peptides' },
+      // Canonical category URLs — used in ads and menu links
+      { source: '/collections/all', destination: '/products' },
+      { source: '/collections/oral-peptide-supplements', destination: '/oral-peptides' },
+    ];
+  },
+  async redirects() {
+    return [
+      // Old short URLs → canonical /collections/* (preserves ad / share traffic)
+      { source: '/all', destination: '/collections/all', permanent: true },
+      { source: '/oral', destination: '/collections/oral-peptide-supplements', permanent: true },
     ];
   },
 };
