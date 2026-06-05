@@ -4,6 +4,44 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
+// Collapsible section: an accordion on mobile, always-open column on desktop.
+function FooterSection({
+  title,
+  children,
+  defaultOpen = false,
+}: {
+  title: string;
+  children: React.ReactNode;
+  defaultOpen?: boolean;
+}) {
+  const [open, setOpen] = useState(defaultOpen);
+  return (
+    <div className="border-b border-white/10 last:border-b-0 md:border-0">
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        className="w-full flex items-center justify-between py-4 md:py-0 md:pointer-events-none text-left"
+      >
+        <h3 className="text-white font-bold text-base lg:text-lg xl:text-xl tracking-wide uppercase">
+          {title}
+        </h3>
+        <svg
+          className={`w-5 h-5 text-white md:hidden transition-transform duration-300 ${open ? 'rotate-180' : ''}`}
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          strokeWidth={2}
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+      <div className={`${open ? 'block' : 'hidden'} md:block pb-5 md:pb-0 md:mt-4`}>
+        {children}
+      </div>
+    </div>
+  );
+}
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   const [email, setEmail] = useState('');
@@ -11,21 +49,39 @@ export default function Footer() {
 
   const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle newsletter signup
     console.log('Newsletter signup:', email);
     setEmail('');
   };
 
   return (
     <>
-      <footer className="bg-[#1f1f1f] text-white ">
-        <div className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48 pt-24 pb-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-12 xl:gap-12 2xl:gap-24">
-            {/* Left Column - Quick Links & Contact */}
-            <div className="space-y-12">
+      <footer className="bg-[#1f1f1f] text-white">
+        <div className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48 pt-16 md:pt-24 pb-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 xl:gap-12 2xl:gap-24">
+            {/* Left Column - Collapsible sections */}
+            <div className="rounded-2xl border border-white/10 px-4 md:px-0 md:border-0 md:rounded-none md:space-y-12">
+              {/* Peptive - Research Disclaimer */}
+              <FooterSection title="Peptive">
+                <div className="space-y-3 text-sm lg:text-base text-gray-400 leading-relaxed">
+                  <p className="font-bold text-white uppercase tracking-wide">
+                    {t('footer.disclaimer_title')}
+                  </p>
+                  <p>{`All products presented on this website are intended exclusively for in-vitro laboratory research and scientific investigation by qualified professionals. Nothing herein constitutes medical advice, therapeutic recommendation, or endorsement for human or animal consumption.`}</p>
+                  <p>{`Peptive does not advocate or condone any off-label use, self-administration, or application beyond controlled research environments. All compounds are sold strictly for academic and investigational purposes. Purchasers assume full responsibility for compliance with applicable regulations. Consultation with research ethics boards, medical advisors, and legal counsel is recommended prior to purchase.`}</p>
+                  <p>{`Peptive does not provide medical services, nor is it a substitute for medical consultations. All products are intended solely for laboratory research use. Any mention of potential effects is provided for informational purposes only.`}</p>
+                  <p>{`The statements made within this website have not been evaluated by health authorities. The statements and the products of this company are intended for research and educational purposes only.`}</p>
+                  <p>
+                    {`Please refer to our `}
+                    <Link href="/terms-of-service" className="text-white underline hover:text-white/70 transition-colors">
+                      Terms Of Service
+                    </Link>
+                    {` prior to purchasing. By purchasing products, you confirm that you are at least 21 years old.`}
+                  </p>
+                </div>
+              </FooterSection>
+
               {/* Quick Links */}
-              <div>
-                <h3 className="text-white font-bold text-lg lg:text-lg xl:text-xl 2xl:text-2xl mb-4 tracking-wide">{t('footer.quick_links').toUpperCase()}</h3>
+              <FooterSection title={t('footer.quick_links')}>
                 <ul className="space-y-2">
                   <li>
                     <Link href="/search" className="text-gray-300 hover:text-white text-base lg:text-base xl:text-lg 2xl:text-xl transition-colors">
@@ -33,24 +89,23 @@ export default function Footer() {
                     </Link>
                   </li>
                 </ul>
-              </div>
+              </FooterSection>
 
-              {/* Contact Info */}
-              <div>
-                <h3 className="text-white font-bold text-lg lg:text-lg xl:text-xl 2xl:text-2xl mb-4 tracking-wide">{t('footer.contact').toUpperCase()}</h3>
+              {/* Contact */}
+              <FooterSection title={t('footer.contact')}>
                 <div className="space-y-2">
-                  <a href="tel:+971558225919" className="block underline text-white hover:text-gray-300 transition-colors text-xl lg:text-xl xl:text-2xl 2xl:text-3xl">
+                  <a href="tel:+971558225919" className="block underline text-white hover:text-gray-300 transition-colors text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">
                     +971 55 822 5919
                   </a>
-                  <a href="mailto:peptivepeptides@gmail.com" className="block underline text-white hover:text-gray-300 transition-colors text-xl lg:text-xl xl:text-2xl 2xl:text-3xl">
+                  <a href="mailto:peptivepeptides@gmail.com" className="block underline text-white hover:text-gray-300 transition-colors text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">
                     peptivepeptides@gmail.com
                   </a>
                 </div>
-              </div>
+              </FooterSection>
             </div>
 
             {/* Right Column - Newsletter */}
-            <div>
+            <div className="mt-4 lg:mt-0">
               <h3 className="text-white font-bold text-2xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-5xl mb-6 leading-tight">
                 {t('footer.join')}
               </h3>
@@ -79,8 +134,8 @@ export default function Footer() {
 
       {/* Bottom Bar Section */}
       <div className="bg-[#1f1f1f] py-4">
-        <div className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex items-center gap-4 text-gray-600 text-sm">
+        <div className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="flex items-center gap-4 text-gray-500 text-sm">
             <span>©{currentYear} Peptive Pept.</span>
             <Link href="/privacy-policy" className="text-white hover:text-white/70 transition-colors">
               {t('footer.privacy_policy')}
@@ -88,28 +143,6 @@ export default function Footer() {
             <Link href="/terms-of-service" className="text-white hover:text-white/70 transition-colors">
               {t('footer.terms_of_service')}
             </Link>
-          </div>
-
-          {/* Payment Icons */}
-          <div className="flex items-center gap-2">
-            <div className="w-12 h-8 bg-gray-100 rounded flex items-center justify-center">
-              <span className="text-xs font-bold text-gray-900">Pay</span>
-            </div>
-            <div className="w-12 h-8 bg-gray-100 rounded flex items-center justify-center">
-              <span className="text-xs font-bold text-gray-900">G Pay</span>
-            </div>
-            <div className="w-12 h-8 bg-gray-100 rounded flex items-center justify-center">
-              <span className="text-xs font-bold text-red-600">JCB</span>
-            </div>
-            <div className="w-12 h-8 bg-gray-100 rounded flex items-center justify-center overflow-hidden">
-              <div className="flex">
-                <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500 -ml-1"></div>
-              </div>
-            </div>
-            <div className="w-12 h-8 bg-gray-100 rounded flex items-center justify-center">
-              <span className="text-xs font-bold text-blue-900">VISA</span>
-            </div>
           </div>
         </div>
       </div>
