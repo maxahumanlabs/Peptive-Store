@@ -173,7 +173,8 @@ export const translations = {
       join: "Join the future of biology and get 15% off + a free copy of our 'Peptive Playbook'.",
       email_placeholder: "Enter your email",
       copyright: "© 2026 Peptive Pept. Powered by Shopify",
-      privacy_policy: "Privacy policy"
+      privacy_policy: "Privacy policy",
+      terms_of_service: "Terms of service"
     },
     authentication: {
       title: "Authentication",
@@ -452,7 +453,8 @@ export const translations = {
       join: "انضم إلى مستقبل علم الأحياء واحصل على خصم 15% + نسخة مجانية من 'دليل الببتيدات الببتيدية' الخاص بنا.",
       email_placeholder: "أدخل بريدك الإلكتروني",
       copyright: "© 2026 Peptive Pept. مدعوم من Shopify",
-      privacy_policy: "سياسة الخصوصية"
+      privacy_policy: "سياسة الخصوصية",
+      terms_of_service: "شروط الخدمة"
     },
     authentication: {
       title: "مصادقة",

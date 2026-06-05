@@ -82,8 +82,11 @@ export default function Footer() {
         <div className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-4 text-gray-600 text-sm">
             <span>©{currentYear} Peptive Pept.</span>
-            <Link href="/privacy-policy" className="hover:text-gray-900 transition-colors">
+            <Link href="/privacy-policy" className="text-white hover:text-white/70 transition-colors">
               {t('footer.privacy_policy')}
+            </Link>
+            <Link href="/terms-of-service" className="text-white hover:text-white/70 transition-colors">
+              {t('footer.terms_of_service')}
             </Link>
           </div>
 
