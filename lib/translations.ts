@@ -38,7 +38,7 @@ export const translations = {
     stack: {
       title: "Build Your Stack",
       description: "The choice is yours. With our stack builder, you can select any combination from our range of products.",
-      add_button: "Add to Stack",
+      add_button: "Add to bundle",
       sold_out: "Sold Out",
       your_stack: "Your Stack",
       empty: "Your stack is empty.\nAdd products to build your stack!",
@@ -109,7 +109,8 @@ export const translations = {
       product: "product",
       products: "products",
       no_products_title: "No Products Found",
-      no_products_message: "Check back soon for new products."
+      no_products_message: "Check back soon for new products.",
+      show_more: "Show more"
     },
     oral_peptides: {
       title: "Oral Peptides Supplements",
@@ -319,7 +320,7 @@ export const translations = {
     stack: {
       title: "قم ببناء مجموعتك",
       description: "الخيار لك. باستخدام أداة تصميم المجموعات لدينا، يمكنك اختيار أي تركيبة من مجموعتنا من المنتجات.",
-      add_button: "أضف إلى المجموعة",
+      add_button: "أضف إلى الحزمة",
       sold_out: "نفذت الكمية",
       your_stack: "مجموعتك",
       empty: "مجموعتك فارغة.\nأضف منتجات لبناء مجموعتك!",
@@ -390,7 +391,8 @@ export const translations = {
       product: "منتج",
       products: "منتجات",
       no_products_title: "لم يتم العثور على منتجات",
-      no_products_message: "تحقق مرة أخرى قريبًا للمنتجات الجديدة."
+      no_products_message: "تحقق مرة أخرى قريبًا للمنتجات الجديدة.",
+      show_more: "عرض المزيد"
     },
     oral_peptides: {
       title: "مكملات الببتيدات الفموية",
