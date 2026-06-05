@@ -22,7 +22,7 @@ export default function ProductRecommendations({ currentProductId }: ProductReco
   };
 
   return (
-    <div className="mt-16 lg:mt-24">
+    <div id="more-results" className="mt-16 lg:mt-24">
       <div className="flex items-start justify-between gap-4 mb-8 lg:mb-10">
         <h2 className="text-2xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight">
           {t('product_detail.more_results')}

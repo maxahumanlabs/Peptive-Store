@@ -556,8 +556,8 @@ export default function ProductDetailPage() {
       {/* You may also like to add for MORE RESULTS */}
       <ProductRecommendations currentProductId={product.id} />
 
-      {/* Floating upsell card */}
-      <FloatingAddToCart currentProductId={product.id} />
+      {/* Floating quick add-to-cart card */}
+      <FloatingAddToCart product={product} />
     </div>
   );
 }
