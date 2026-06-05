@@ -31,7 +31,7 @@ export default function AnnouncementBar() {
 
   return (
     <div className="bg-[#1f1f1f] text-white py-4 md:py-2 lg:py-2 px-6 sm:px-2 lg:px-12 relative z-50">
-      <div className="flex items-center gap-4">
+      <div className="relative flex items-center min-h-[1.25rem]">
         {/* Country / Language selectors - left (hidden on mobile) */}
         <div className="flex-shrink-0 flex items-center gap-2">
           <div className="hidden md:block">
@@ -42,8 +42,11 @@ export default function AnnouncementBar() {
           </div>
         </div>
 
-        {/* Marquee - fixed width (not full width) */}
-        <div className="w-[587px] max-w-full overflow-hidden" dir="ltr">
+        {/* Marquee - fixed width, centered in the bar */}
+        <div
+          className="absolute left-1/2 -translate-x-1/2 w-[587px] max-w-full overflow-hidden"
+          dir="ltr"
+        >
           <div className="flex w-max animate-marquee hover:[animation-play-state:paused]">
             <Track />
             <Track />
