@@ -63,14 +63,15 @@ export default function ProductCard({ product }: ProductCardProps) {
 
       {/* Product Info */}
       <div className="bg-gray-50 p-5">
-        <div className="flex items-start justify-between mb-2 gap-3">
+        {/* Mobile: name stacks above price. Desktop: name and price sit side by side. */}
+        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-2 gap-2 lg:gap-3">
           <div className="flex-1 min-w-0">
             <p className="text-gray-500 text-[10px] lg:text-xs xl:text-xs mb-1 uppercase tracking-wide">
               Peptive
             </p>
             <h3 className="text-gray-900 text-base lg:text-lg xl:text-xl font-medium break-words">{productName}</h3>
           </div>
-          <div className="text-right flex-shrink-0">
+          <div className="text-left lg:text-right flex items-baseline gap-2 lg:block lg:flex-shrink-0">
             <p className="text-red-500 font-semibold text-sm lg:text-base xl:text-base whitespace-nowrap">
               Dhs. {parseFloat(product.price).toFixed(2)}
             </p>
