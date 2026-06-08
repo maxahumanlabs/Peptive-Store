@@ -8,23 +8,19 @@ import StackBuilder from '@/components/products/StackBuilder';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const CATEGORY = 'all';
-const PER_PAGE = 12;
 
 export default function ProductsPage() {
   const { t } = useLanguage();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
-  const [page, setPage] = useState(1);
-  const [hasMore, setHasMore] = useState(false);
-  const [loadingMore, setLoadingMore] = useState(false);
 
   useEffect(() => {
     async function loadProducts() {
       try {
         const { woocommerce } = await import('@/lib/woocommerce');
-        const data = await woocommerce.getProducts({ category: CATEGORY, page: 1, perPage: PER_PAGE });
+        // Load every product in the category (Store API caps per_page at 100)
+        const data = await woocommerce.getProducts({ category: CATEGORY, perPage: 100 });
         setProducts(data);
-        setHasMore(data.length === PER_PAGE);
       } catch (error) {
         console.error('Error fetching products:', error);
       } finally {
@@ -33,22 +29,6 @@ export default function ProductsPage() {
     }
     loadProducts();
   }, []);
-
-  const loadMore = async () => {
-    setLoadingMore(true);
-    try {
-      const { woocommerce } = await import('@/lib/woocommerce');
-      const next = page + 1;
-      const data = await woocommerce.getProducts({ category: CATEGORY, page: next, perPage: PER_PAGE });
-      setProducts((prev) => [...prev, ...data]);
-      setPage(next);
-      setHasMore(data.length === PER_PAGE);
-    } catch (error) {
-      console.error('Error loading more products:', error);
-    } finally {
-      setLoadingMore(false);
-    }
-  };
 
   return (
     <div>
@@ -90,21 +70,8 @@ export default function ProductsPage() {
           <>
             <ProductGrid products={products} />
 
-            {/* Show more */}
-            {hasMore && (
-              <div className="mt-12 text-center">
-                <button
-                  onClick={loadMore}
-                  disabled={loadingMore}
-                  className="inline-flex items-center gap-2 border-2 border-gray-900 text-gray-900 font-semibold px-10 py-3.5 rounded-full hover:bg-gray-900 hover:text-white transition-colors disabled:opacity-60"
-                >
-                  {loadingMore ? t('products.loading') : t('products.show_more')}
-                </button>
-              </div>
-            )}
-
             {/* Results Count */}
-            <div className="mt-6 text-center text-gray-600">
+            <div className="mt-12 text-center text-gray-600">
               {t('products.showing')} {products.length} {products.length === 1 ? t('products.product') : t('products.products')}
             </div>
           </>

@@ -85,7 +85,7 @@ export default function StackBuilder({ category }: StackBuilderProps) {
         {/* Products grid */}
         <div className="lg:col-span-3 order-1">
           {loading ? (
-            <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-4 lg:gap-6">
               {[1, 2, 3].map((i) => (
                 <div key={i} className="bg-gray-50 rounded-xl overflow-hidden">
                   <div className="aspect-square bg-gray-100 animate-pulse" />
@@ -97,7 +97,7 @@ export default function StackBuilder({ category }: StackBuilderProps) {
               ))}
             </div>
           ) : (
-            <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-4 lg:gap-6">
               {stackProducts.map((product) => (
                 <div key={product.id} className="relative bg-gray-50 rounded-xl overflow-hidden shadow-sm">
                   {/* Badges */}
