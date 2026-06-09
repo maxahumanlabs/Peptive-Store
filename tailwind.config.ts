@@ -32,10 +32,15 @@ const config: Config = {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-50%)' },
         },
+        'stock-drain': {
+          '0%': { width: '100%' },
+          '100%': { width: 'var(--stock-end, 45%)' },
+        },
       },
       animation: {
         'hero-reveal': 'hero-reveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) both',
         marquee: 'marquee 25s linear infinite',
+        'stock-drain': 'stock-drain 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both',
       },
     },
   },

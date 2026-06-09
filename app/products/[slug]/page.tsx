@@ -208,6 +208,11 @@ export default function ProductDetailPage() {
   // Toggle to show/hide the rating row (hidden to match the reference design)
   const SHOW_RATING = false;
 
+  // Stock-pressure widget (urgency cue). Hardcoded for now — flip to product
+  // .stockQuantity once WooCommerce starts tracking real stock counts.
+  const STOCK_LEFT = 10;
+  const STOCK_TOTAL = 22;
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50 px-4 md:px-12 lg:px-12 xl:px-12 2xl:px-48 pt-4 md:pt-6 lg:pt-6 xl:pt-6 2xl:pt-8 pb-16 md:pb-20 lg:pb-20 xl:pb-20 2xl:pb-24">
       <div className="grid lg:grid-cols-[2fr_1fr] gap-12 lg:gap-12 xl:gap-12 2xl:gap-16">
@@ -393,9 +398,17 @@ export default function ProductDetailPage() {
               </span>
             </div>
           ) : (
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-[#f7fee7]">
-              <span className="w-3 h-3 mr-2 rounded-full bg-[#4d7c0f] border-2 border-[#487012] shadow-inner"></span>
-              <span className="text-[#4d7c0f] font-medium text-sm md:text-base">{t('product_detail.in_stock')}</span>
+            <div className="space-y-2">
+              <p className="text-sm md:text-base text-gray-900">
+                {t('product_detail.hurry_only')} {STOCK_LEFT} {t('product_detail.items_left')}
+              </p>
+              {/* Drain animation: bar starts full and shrinks to the "items left" ratio */}
+              <div className="w-full h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-gray-900 rounded-full animate-stock-drain"
+                  style={{ ['--stock-end' as any]: `${Math.max(5, Math.min(95, (STOCK_LEFT / STOCK_TOTAL) * 100))}%` }}
+                />
+              </div>
             </div>
           )}
 
