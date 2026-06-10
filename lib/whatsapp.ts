@@ -12,8 +12,8 @@ export interface OrderLine {
 }
 
 const LABELS = {
-  en: { header: '🛒 New Order — Peptive', total: 'Total' },
-  ar: { header: '🛒 طلب جديد — Peptive', total: 'الإجمالي' },
+  en: { header: '🛒 New Order — Peptive', total: 'Total', tax: '+ Tax' },
+  ar: { header: '🛒 طلب جديد — Peptive', total: 'الإجمالي', tax: '+ ضريبة' },
 } as const;
 
 const toNumber = (price: string | number): number =>
@@ -34,7 +34,7 @@ export function buildWhatsAppOrderMessage(
       : displayName;
     const unit = toNumber(line.price);
     const lineTotal = unit * line.quantity;
-    return `${i + 1}) ${title}\n   ${line.quantity} × ${formatPrice(unit)} = ${formatPrice(lineTotal)}`;
+    return `${i + 1}) ${title}\n   ${line.quantity} × ${formatPrice(unit)} ${L.tax} = ${formatPrice(lineTotal)} ${L.tax}`;
   });
 
   const total = lines.reduce(
@@ -42,7 +42,7 @@ export function buildWhatsAppOrderMessage(
     0
   );
 
-  return `${L.header}\n\n${lineStrings.join('\n\n')}\n\n${L.total}: ${formatPrice(total)}`;
+  return `${L.header}\n\n${lineStrings.join('\n\n')}\n\n${L.total}: ${formatPrice(total)} ${L.tax}`;
 }
 
 // Build the order message and open WhatsApp in a new tab
