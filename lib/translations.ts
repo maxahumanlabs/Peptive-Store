@@ -280,7 +280,19 @@ export const translations = {
       one_month: "1 month",
       three_months: "3 months",
       six_months: "6 months",
-      buy_now: "Buy it now"
+      buy_now: "Buy it now",
+      tag_three_months: "Faster & Durable Results",
+      tag_two_months: "Most Ordered",
+      tag_one_month: "Just to try",
+      bottle: "bottle",
+      bottles: "bottles",
+      free_gifts: "Free Gifts",
+      gift_free_shipping: "Free Shipping",
+      gift_bac_water: "BAC Water",
+      gift_ebook: "Peptide Ebook",
+      gift_ai_coach: "AI Peptide Coach",
+      gift_mystery: "1 Mystery Supplement",
+      unlock_gifts: "Unlock Free gifts with your order"
     }
   },
   ar: {
