@@ -453,24 +453,28 @@ export default function ProductDetailPage() {
                 const isSelected = selectedBundle === bundle.id;
                 const hasSavings = (bundle.savings ?? 0) > 0;
                 let tagKey = '';
-                if (bundle.months === 6) tagKey = 'tag_three_months'; // Using the "Faster & Durable Results" tag for the biggest bundle
-                else if (bundle.months === 3) tagKey = 'tag_two_months'; // "Most Ordered"
-                else tagKey = 'tag_one_month'; // "Just to try"
+                if (bundle.months === 3) tagKey = 'tag_two_months'; // "Most Ordered"
 
                 return (
                   <label
                     key={bundle.id}
                     className={`relative block rounded-2xl border-[2px] cursor-pointer transition-all ${
                       isSelected
-                        ? "border-[#000000] shadow-md bg-white"
+                        ? "border-[#D4AF37] shadow-md bg-white"
                         : "border-gray-300 hover:border-gray-400 bg-white"
                     }`}
                   >
-                    <div className="absolute -top-3 right-4 z-10">
-                      <span className="inline-block px-3 py-1 rounded-full text-[10px] md:text-xs font-bold tracking-wide shadow-sm bg-[#000000] text-white">
-                        {t(`bundle.${tagKey}`)}
-                      </span>
-                    </div>
+                    {bundle.months === 3 && (
+                      <div className="absolute -top-5 right-[-10px] md:-top-7 md:-right-9 flex items-center gap-1 md:gap-1.5 bg-black text-white px-3 py-1.5 md:px-4 md:py-2 rounded-[50%] shadow-lg rotate-[10deg] z-10">
+                        <span className="text-yellow-200 text-[8px] md:text-[10px]">✦</span>
+                        <span className="flex flex-col items-center text-center text-xs md:text-sm leading-[1.05]" style={{ fontFamily: 'var(--font-script)' }}>
+                          {t(`bundle.${tagKey}`).split(' ').map((word, i) => (
+                            <span key={i}>{word}</span>
+                          ))}
+                        </span>
+                        <span className="text-yellow-200 text-[8px] md:text-[10px]">✦</span>
+                      </div>
+                    )}
 
                     <div className="overflow-hidden rounded-[14px]">
                       <div
@@ -486,10 +490,10 @@ export default function ProductDetailPage() {
                         />
                         <div
                           className={`w-5 h-5 flex items-center justify-center rounded-full border-[2px] flex-shrink-0 transition-colors ${
-                            isSelected ? "border-black" : "border-gray-400"
+                            isSelected ? "border-[#D4AF37]" : "border-gray-400"
                           }`}
                         >
-                          {isSelected && <div className="w-2.5 h-2.5 rounded-full bg-black"></div>}
+                          {isSelected && <div className="w-2.5 h-2.5 rounded-full bg-[#D4AF37]"></div>}
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2 flex-wrap">
@@ -541,7 +545,7 @@ export default function ProductDetailPage() {
                 </div>
                 <div className="w-8 h-8 md:w-14 md:h-14 bg-white flex items-center justify-center mb-1.5 md:mb-3 mt-1 md:mt-4 shadow-sm shrink-0">
                   <div className="relative w-8 h-8 md:w-14 md:h-14 overflow-hidden rounded-sm mix-blend-multiply">
-                    <Image src="/Free Shipping.jpeg" alt="Free Shipping" fill className="object-contain" sizes="(max-width: 768px) 20px, 32px" />
+                    <Image src="/Free Shipping.webp" alt="Free Shipping" fill className="object-contain" sizes="(max-width: 768px) 20px, 32px" />
                   </div>
                 </div>
                 <span className="text-[##000000] font-bold text-[8px] md:text-xs text-center leading-[1.2] md:leading-snug px-0.5">
