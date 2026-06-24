@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { Product } from '@/types';
+import { decodeHtmlEntities } from '@/lib/utils';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useCartStore } from '@/store/cartStore';
 
@@ -16,9 +17,10 @@ export default function ProductCard({ product }: ProductCardProps) {
   const openCart = useCartStore((state) => state.openCart);
 
   // Get localized product name
-  const productName = language === 'ar' && (product as any).arabic_name
+  const rawProductName = language === 'ar' && (product as any).arabic_name
     ? (product as any).arabic_name
     : product.name;
+  const productName = decodeHtmlEntities(rawProductName);
 
   // Calculate discount percentage if on sale
   const discountPercent = product.onSale && product.regularPrice && product.salePrice
