@@ -672,13 +672,13 @@ export default function ProductDetailPage() {
         </div>
       </div>
 
-      {/* You may also like to add for MORE RESULTS */}
-      <ProductRecommendations currentProductId={product.id} />
-
       {/* Product Reviews Section */}
       <div className="mt-16 border-t border-gray-200">
         <ProductReviews productId={product.id} reviews={reviews} />
       </div>
+
+      {/* You may also like to add for MORE RESULTS */}
+      <ProductRecommendations currentProductId={product.id} />
 
       {/* Floating quick add-to-cart card */}
       <FloatingAddToCart product={product} />
