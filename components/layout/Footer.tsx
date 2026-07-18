@@ -55,7 +55,7 @@ export default function Footer() {
 
   return (
     <>
-      <footer className="bg-[#1f1f1f] text-white">
+      <footer className="bg-[#1f1f1f] text-white max-w-[1600px] mx-auto">
         <div className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48 pt-16 md:pt-24 pb-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 xl:gap-12 2xl:gap-24">
             {/* Left Column - Collapsible sections */}
