@@ -38,6 +38,19 @@ export default function ProductDetailPage() {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
   const addItem = useCartStore((state) => state.addItem);
 
+  // 2 hour countdown timer
+  const [timeLeft, setTimeLeft] = useState(7200);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimeLeft(prev => {
+        if (prev <= 1) return 7200;
+        return prev - 1;
+      });
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   useEffect(() => {
     const fetchProduct = async () => {
       if (!slug) return;
@@ -208,19 +221,6 @@ export default function ProductDetailPage() {
 
   // Toggle to show/hide the rating row (hidden to match the reference design)
   const SHOW_RATING = false;
-
-  // 2 hour countdown timer
-  const [timeLeft, setTimeLeft] = useState(7200);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTimeLeft(prev => {
-        if (prev <= 1) return 7200;
-        return prev - 1;
-      });
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
 
   const timerHours = Math.floor(timeLeft / 3600);
   const timerMinutes = Math.floor((timeLeft % 3600) / 60);
