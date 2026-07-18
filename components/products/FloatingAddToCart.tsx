@@ -20,18 +20,13 @@ export default function FloatingAddToCart({ product }: FloatingAddToCartProps) {
 
   useEffect(() => {
     const update = () => {
-      const recs = document.getElementById('more-results');
       const footer = document.querySelector('footer');
-      if (!recs) {
-        setVisible(false);
-        return;
-      }
       const vh = window.innerHeight;
-      const recsTop = recs.getBoundingClientRect().top;
       const footerTop = footer ? footer.getBoundingClientRect().top : Infinity;
-      // Visible once the recommendations section enters the viewport, hidden
-      // once the footer is about to appear.
-      setVisible(recsTop < vh && footerTop > vh * 0.9);
+      
+      // Show when scrolled down a bit (e.g., past the main product info)
+      // Hide when footer is about to appear
+      setVisible(window.scrollY > 600 && footerTop > vh * 0.9);
     };
     update();
     window.addEventListener('scroll', update, { passive: true });
@@ -68,18 +63,28 @@ export default function FloatingAddToCart({ product }: FloatingAddToCartProps) {
   };
 
   return (
-    <div
-      className={`fixed bottom-5 right-5 z-40 w-[520px] max-w-[calc(100vw-2rem)] rounded-2xl border border-gray-100 bg-white p-4 shadow-2xl transition-all duration-500 ease-out ${
-        visible
-          ? 'translate-y-0 opacity-100'
-          : 'pointer-events-none translate-y-8 opacity-0'
-      }`}
-    >
-      <button
+    <>
+      {visible && (
+        <style>{`
+          @media (max-width: 767px) {
+            #whatsapp-btn {
+              transform: translateY(-90px);
+            }
+          }
+        `}</style>
+      )}
+      <div
+        className={`fixed bottom-0 md:bottom-5 right-0 md:right-5 z-40 w-full md:w-[520px] max-w-full md:max-w-[calc(100vw-2rem)] rounded-none md:rounded-2xl border-t md:border border-gray-100 bg-white p-4 pb-6 md:pb-4 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] md:shadow-2xl transition-all duration-500 ease-out ${
+          visible
+            ? 'translate-y-0 opacity-100'
+            : 'pointer-events-none translate-y-full md:translate-y-8 opacity-0'
+        }`}
+      >
+        <button
         type="button"
         onClick={() => setDismissed(true)}
         aria-label="Close"
-        className="absolute -top-2.5 -right-2.5 flex h-7 w-7 items-center justify-center rounded-full bg-gray-900 text-white shadow"
+        className="hidden md:flex absolute -top-2.5 -right-2.5 h-7 w-7 items-center justify-center rounded-full bg-gray-900 text-white shadow"
       >
         <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -118,5 +123,6 @@ export default function FloatingAddToCart({ product }: FloatingAddToCartProps) {
         </button>
       </div>
     </div>
+    </>
   );
 }

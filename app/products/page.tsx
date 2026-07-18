@@ -33,7 +33,7 @@ export default function ProductsPage() {
   return (
     <div>
       {/* Banner Section */}
-      <section className="pb-0">
+      <section className="max-w-[1600px] mx-auto pb-0">
         <div className="relative  text-white overflow-hidden rounded-t-3xl min-h-[300px] md:min-h-[400px] flex items-center">
           <div
             className="absolute inset-0 bg-cover bg-center opacity-40"
@@ -60,7 +60,7 @@ export default function ProductsPage() {
       </section>
 
       {/* Products Grid Section */}
-      <section className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48 py-12">
+      <section className="max-w-[1600px] mx-auto px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48 py-12">
         {loading ? (
           <div className="text-center py-12">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto"></div>

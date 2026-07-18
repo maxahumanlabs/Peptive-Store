@@ -88,7 +88,7 @@ export default function HomePage() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48 pb-0">
+      <section className="max-w-[1600px] mx-auto px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48 pb-0">
         <div className="relative  text-white overflow-hidden rounded-3xl">
           {/* Background Image with Parallax Effect */}
           <div 
@@ -137,7 +137,7 @@ export default function HomePage() {
       </section>
 
     {/* Brand Statement Section */}
-      <section className="py-12 bg-white">
+      <section className="max-w-[1600px] mx-auto py-12 bg-white">
         <div className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48 text-center">
           <h2 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-extrabold text-gray-900 inline-flex items-center justify-center flex-wrap gap-x-3">
             <span>{t('brand.research')}</span>
@@ -161,7 +161,7 @@ export default function HomePage() {
     
     
       {/* Trending Research Section */}
-      <section className="py-8 bg-white">
+      <section className="max-w-[1600px] mx-auto py-8 bg-white">
         <div className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48">
           {/* Section Header */}
           <div className="flex items-center justify-between mb-8">
@@ -204,11 +204,12 @@ export default function HomePage() {
         </div>
 
         {/* Product Carousel - Full Width */}
-        <div id="trending-carousel" className="overflow-x-auto scrollbar-hide scroll-smooth">
-          <div className="flex gap-6 px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48 pb-6">
+        <div className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48">
+          <div id="trending-carousel" className="overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory pb-6">
+            <div className="grid grid-flow-col auto-cols-[85%] sm:auto-cols-[calc((100%-1.5rem)/2)] lg:auto-cols-[calc((100%-3rem)/3)] xl:auto-cols-[calc((100%-4.5rem)/4)] gap-6">
             {trendingProducts.length > 0 ? (
               trendingProducts.map((product) => (
-                <Link key={product.id} href={`/products/${product.slug}`} className="flex-none w-64 md:w-72 lg:w-80 xl:w-[340px] 2xl:w-[360px]">
+                <Link key={product.id} href={`/products/${product.slug}`} className="w-full snap-start">
                   <div className="relative bg-gray-50 rounded-xl overflow-hidden shadow-sm group h-full">
                     {/* Badges */}
                     <div className="absolute top-4 left-4 flex flex-col gap-2 z-10">
@@ -279,12 +280,13 @@ export default function HomePage() {
             )}
           </div>
         </div>
+        </div>
       </section>
 
       
 
 {/* Why Peptive Peptides Section */}
-      <section className="py-16 bg-white">
+      <section className="max-w-[1600px] mx-auto py-16 bg-white">
         <div className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48">
           {/* Section Title */}
           <h2 className="text-4xl md:text-5xl lg:text-5xl xl:text-5xl 2xl:text-7xl font-bold text-center text-gray-900 mb-12">
@@ -400,7 +402,7 @@ export default function HomePage() {
       </section>
 
       {/* FAQs Section */}
-      <section className="pt-6 pb-8 bg-white">
+      <section className="max-w-[1600px] mx-auto pt-6 pb-8 bg-white">
         <div className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48">
           <div className="max-w-4xl mx-auto space-y-3">
             <h2 className="text-5xl lg:text-5xl xl:text-5xl 2xl:text-7xl font-bold text-gray-900 mb-8">

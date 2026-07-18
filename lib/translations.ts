@@ -155,6 +155,7 @@ export const translations = {
       in_stock: "In stock, ready to ship",
       hurry_only: "Hurry, only",
       items_left: "items left in stock!",
+      delivered_stats: "Fast Selling | Ships in 24 hours",
       order_whatsapp: "Order on WhatsApp + Free Shipping + 10% OFF",
       more_results: "You may also like to add for MORE RESULTS",
       view_all: "View all",

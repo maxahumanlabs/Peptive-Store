@@ -66,7 +66,7 @@ export default function StackPage() {
   return (
     <div>
       {/* Banner Section */}
-      <section className="pb-0">
+      <section className="max-w-[1600px] mx-auto pb-0">
         <div className="relative  text-white overflow-hidden rounded-t-3xl min-h-[300px] md:min-h-[400px] flex items-center">
           {/* Background Image */}
           <div 
@@ -106,7 +106,7 @@ export default function StackPage() {
       </section>
 
       {/* Main Content Section */}
-      <section className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48 py-12">
+      <section className="max-w-[1600px] mx-auto px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48 py-12">
         <div className="grid lg:grid-cols-4 gap-6">
           {/* Your Stack Sidebar - Left Side */}
           <div className="lg:col-span-1 order-2 lg:order-1">

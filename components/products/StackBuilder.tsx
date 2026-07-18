@@ -70,7 +70,7 @@ export default function StackBuilder({ category }: StackBuilderProps) {
   if (!loading && stackProducts.length === 0) return null;
 
   return (
-    <section className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48 py-16 border-t border-gray-100">
+    <section className="max-w-[1600px] mx-auto px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48 py-16 border-t border-gray-100">
       {/* Header */}
       <div className="text-center mb-10 lg:mb-12">
         <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-3">
