@@ -88,13 +88,13 @@ export default function HomePage() {
   return (
     <div>
       {/* Static Hero Section */}
-      <section className="relative w-full max-w-[1600px] mx-auto bg-[#f4f7fa] overflow-hidden min-h-0 md:min-h-[600px] flex flex-col md:flex-row items-center md:py-32 pt-0 pb-10 md:pb-20">
+      <section className="relative w-full max-w-[1600px] mx-auto bg-[#fffdf8] overflow-hidden min-h-0 md:min-h-[600px] flex flex-col md:flex-row items-center md:py-32 pt-0 pb-10 md:pb-20">
         
         {/* Mobile Background Image & Gradient */}
         <div className="absolute top-0 left-0 right-0 h-[480px] md:hidden z-0">
            <Image src="/Hero-Products.png" alt="Maxa Human Peptides" fill className="object-cover object-top opacity-90 mix-blend-multiply" priority sizes="100vw" />
            {/* Gradient Overlay to fade into background */}
-           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#f4f7fa]/70 to-[#f4f7fa]"></div>
+           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#fffdf8]/70 to-[#fffdf8]"></div>
         </div>
 
         {/* Split Screen Image (Desktop) */}

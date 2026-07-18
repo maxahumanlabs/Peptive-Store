@@ -11,6 +11,7 @@ import { openWhatsAppOrder } from '@/lib/whatsapp';
 import RelatedProducts from '@/components/products/RelatedProducts';
 import ProductRecommendations from '@/components/products/ProductRecommendations';
 import FloatingAddToCart from '@/components/products/FloatingAddToCart';
+import ProductReviews from '@/components/products/ProductReviews';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 type BundleOption = {
@@ -673,6 +674,11 @@ export default function ProductDetailPage() {
 
       {/* You may also like to add for MORE RESULTS */}
       <ProductRecommendations currentProductId={product.id} />
+
+      {/* Product Reviews Section */}
+      <div className="mt-16 border-t border-gray-200">
+        <ProductReviews productId={product.id} reviews={reviews} />
+      </div>
 
       {/* Floating quick add-to-cart card */}
       <FloatingAddToCart product={product} />
