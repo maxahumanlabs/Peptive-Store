@@ -9,6 +9,7 @@ import { Product } from '@/types';
 import { wordpress } from '@/lib/wordpress';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { WHATSAPP_NUMBER } from '@/lib/whatsapp';
+import ProductCard from '@/components/products/ProductCard';
 
 export default function HomePage() {
   const { t, language } = useLanguage();
@@ -284,67 +285,9 @@ export default function HomePage() {
             <div className="grid grid-flow-col auto-cols-[85%] sm:auto-cols-[calc((100%-1.5rem)/2)] lg:auto-cols-[calc((100%-3rem)/3)] xl:auto-cols-[calc((100%-4.5rem)/4)] gap-6">
             {trendingProducts.length > 0 ? (
               trendingProducts.map((product) => (
-                <Link key={product.id} href={`/products/${product.slug}`} className="w-full snap-start">
-                  <div className="relative bg-gray-50 rounded-xl overflow-hidden shadow-sm group h-full">
-                    {/* Badges */}
-                    <div className="absolute top-4 left-4 flex flex-col gap-2 z-10">
-                      {product.onSale && product.regularPrice && product.salePrice && (
-                        <span className="bg-red-500 text-white text-xs lg:text-xs xl:text-sm 2xl:text-sm font-bold px-4 py-1.5 rounded-full">
-                          Save {Math.round(((parseFloat(product.regularPrice) - parseFloat(product.salePrice)) / parseFloat(product.regularPrice)) * 100)}%
-                        </span>
-                      )}
-                      {product.stockStatus !== 'instock' && (
-                        <span className="bg-gray-300 text-gray-700 text-xs lg:text-xs xl:text-sm 2xl:text-sm font-bold px-4 py-1.5 rounded-full">
-                          Sold Out
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Product Image with slide transition */}
-                    <div className="relative bg-gray-100 aspect-square flex items-center justify-center overflow-hidden">
-                      {product.images && product.images.length > 0 ? (
-                        <>
-                          {/* First Image */}
-                          <img 
-                            src={product.images[0] || '/placeholder.jpg'} 
-                            alt={product.name} 
-                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:-translate-x-full" 
-                          />
-                          {/* Second Image - slides in from right */}
-                          <img 
-                            src={product.images[1] || product.images[0] || '/placeholder.jpg'} 
-                            alt={product.name} 
-                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-in-out translate-x-full group-hover:translate-x-0" 
-                          />
-                        </>
-                      ) : (
-                        <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300" />
-                      )}
-                    </div>
-
-                    {/* Product Info */}
-                    <div className="bg-gray-50 p-5">
-                      <div className="flex items-start justify-between">
-                        <div className="flex-1">
-                          <p className="text-gray-500 text-xs lg:text-xs xl:text-sm 2xl:text-sm mb-1 uppercase tracking-wide">
-                            Peptive
-                          </p>
-                          <h3 className="text-gray-900 text-base lg:text-base xl:text-lg 2xl:text-xl font-medium">{language === 'ar' && (product as any).arabic_name ? (product as any).arabic_name : product.name}</h3>
-                        </div>
-                        <div className="text-right ml-3">
-                          <p className="text-red-500 font-semibold text-base lg:text-base xl:text-lg 2xl:text-xl whitespace-nowrap">
-                            Dhs. {parseFloat(product.price).toFixed(2)}
-                          </p>
-                          {product.onSale && product.regularPrice && parseFloat(product.regularPrice) > parseFloat(product.price) && (
-                            <p className="text-gray-400 text-sm lg:text-sm xl:text-base 2xl:text-lg line-through whitespace-nowrap">
-                              Dhs. {parseFloat(product.regularPrice).toFixed(2)}
-                            </p>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
+                <div key={product.id} className="w-full h-full snap-start">
+                  <ProductCard product={product} />
+                </div>
               ))
             ) : (
               <div className="flex-none w-80">
