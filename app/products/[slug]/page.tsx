@@ -209,10 +209,23 @@ export default function ProductDetailPage() {
   // Toggle to show/hide the rating row (hidden to match the reference design)
   const SHOW_RATING = false;
 
-  // Stock-pressure widget (urgency cue). Hardcoded for now — flip to product
-  // .stockQuantity once WooCommerce starts tracking real stock counts.
-  const STOCK_LEFT = 10;
-  const STOCK_TOTAL = 22;
+  // 2 hour countdown timer
+  const [timeLeft, setTimeLeft] = useState(7200);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimeLeft(prev => {
+        if (prev <= 1) return 7200;
+        return prev - 1;
+      });
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const timerHours = Math.floor(timeLeft / 3600);
+  const timerMinutes = Math.floor((timeLeft % 3600) / 60);
+  const timerSeconds = timeLeft % 60;
+  const timeString = `${timerHours.toString().padStart(2, '0')}:${timerMinutes.toString().padStart(2, '0')}:${timerSeconds.toString().padStart(2, '0')}`;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50 px-4 md:px-12 lg:px-12 xl:px-12 2xl:px-48 pt-4 md:pt-6 lg:pt-6 xl:pt-6 2xl:pt-8 pb-16 md:pb-20 lg:pb-20 xl:pb-20 2xl:pb-24">
@@ -400,14 +413,13 @@ export default function ProductDetailPage() {
             </div>
           ) : (
             <div className="space-y-2">
-              <p className="text-sm md:text-base text-gray-900">
-                {t('product_detail.hurry_only')} {STOCK_LEFT} {t('product_detail.items_left')}
+              <p className="text-sm md:text-base font-medium text-gray-900 mb-2">
+                {t("product_detail.hurry_offer_ends")} <span className="font-bold text-red-600">{timeString}</span>
               </p>
-              {/* Drain animation: bar starts full and shrinks to the "items left" ratio */}
-              <div className="w-full h-1.5 bg-gray-200 rounded-full overflow-hidden">
+              <div className="h-1.5 w-full rounded-full bg-gray-200 overflow-hidden mb-2">
                 <div
-                  className="h-full bg-gray-900 rounded-full animate-stock-drain"
-                  style={{ ['--stock-end' as any]: `${Math.max(5, Math.min(95, (STOCK_LEFT / STOCK_TOTAL) * 100))}%` }}
+                  className="h-full rounded-full bg-gray-900 transition-[width] duration-1000 ease-linear"
+                  style={{ width: `${(timeLeft / 36000) * 100}%` }}
                 />
               </div>
               <div className="bg-[#eef2fa] rounded-full px-4 py-2.5 mt-3 inline-flex items-center gap-2 border border-blue-100 shadow-sm">

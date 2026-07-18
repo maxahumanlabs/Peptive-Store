@@ -179,6 +179,7 @@ export const translations = {
       out_of_stock: "Out of stock",
       in_stock: "In stock, ready to ship",
       hurry_only: "Hurry, only",
+      hurry_offer_ends: "Hurry, Offer ends in ",
       items_left: "items left in stock!",
       delivered_stats: "Fast Selling | Ships in 24 hours",
       order_whatsapp: "Order on WhatsApp + Free Shipping + 10% OFF",

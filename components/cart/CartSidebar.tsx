@@ -6,6 +6,7 @@ import { useCartStore } from '@/store/cartStore';
 import { formatPrice } from '@/lib/utils';
 import { openWhatsAppOrder } from '@/lib/whatsapp';
 import CartItem from './CartItem';
+import CartTimer from './CartTimer';
 import CartRecommendations from './CartRecommendations';
 import Button from '@/components/ui/Button';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -76,6 +77,7 @@ export default function CartSidebar() {
               {items.map((item) => (
                 <CartItem key={item.cartItemId || `${item.id}-${Math.random()}`} item={item} />
               ))}
+              <CartTimer />
               <CartRecommendations onNavigate={closeCart} />
             </div>
           )}
