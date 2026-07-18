@@ -1,79 +1,123 @@
 [
   {
-    "id": 1001,
-    "name": "Ahmed T.",
+    "id": 2006,
+    "name": "Marcus T.",
+    "date": "20/5/2026",
+    "rating": 5,
+    "text": "Absolutely top-tier quality. The packaging was secure, and the results have been consistent.",
+    "verified": true,
+    "images": [
+      "/Reviews/7.jpeg"
+    ]
+  },
+  {
+    "id": 2000,
+    "name": "Salem Al-Marri",
+    "date": "21/1/2026",
+    "rating": 5,
+    "text": "الكواليتي فوق الممتاز، جربت شركات كتير بس دي الأفضل من ناحية النقاء والتغليف. التوصيل كان سريع جداً.",
+    "verified": true,
+    "images": [
+      "/Reviews/1.jpeg"
+    ]
+  },
+  {
+    "id": 2010,
+    "name": "Michael S.",
+    "date": "18/6/2026",
+    "rating": 5,
+    "text": "Great product overall. The difference in my sleep quality and joint health has been phenomenal over the past month.",
+    "verified": true,
+    "images": [
+      "/Reviews/11.jpeg"
+    ]
+  },
+  {
+    "id": 2002,
+    "name": "Khalifa",
+    "date": "24/4/2026",
+    "rating": 5,
+    "text": "الباكينج احترافي ومبين إنهم مهتمين بكل التفاصيل. الجودة ممتازة والنتيجة فرقت معايا جداً في الاستشفاء.",
+    "verified": true,
+    "images": [
+      "/Reviews/3.jpeg"
+    ]
+  },
+  {
+    "id": 2001,
+    "name": "Majed",
+    "date": "12/5/2026",
+    "rating": 5,
+    "text": "الصراحة نتيجة مبهرة من أول أسبوعين، والميزة إن الدعم الفني متجاوبين وبيشرحوا كل تفصيلة بوضوح. أنصح فيه.",
+    "verified": true,
+    "images": [
+      "/Reviews/2.jpeg"
+    ]
+  },
+  {
+    "id": 2004,
+    "name": "Fahad",
+    "date": "1/6/2026",
+    "rating": 5,
+    "text": "الشفافية في تقارير الفحص بتخلي الواحد يطلب وهو مطمن. النتايج خرافية وتستاهل ثقتنا.",
+    "verified": true,
+    "images": [
+      "/Reviews/5.jpeg"
+    ]
+  },
+  {
+    "id": 2005,
+    "name": "Abdullah",
+    "date": "3/2/2026",
+    "rating": 5,
+    "text": "تجربتي معاهم ممتازة، المنتجات جودتها عالية جداً ونومتي صارت أعمق والريكفري أسرع بعد التمرين.",
+    "verified": true,
+    "images": [
+      "/Reviews/6.jpeg"
+    ]
+  },
+  {
+    "id": 2007,
+    "name": "David W.",
     "date": "10/7/2026",
     "rating": 5,
-    "text": "الصراحة كنت متردد في البداية، بس النتايج في الشهر اللي فات كانت واضحة جداً. أنصح فيه بقوة لأي حد مهتم بروتينه اليومي.",
+    "text": "I've noticed a significant improvement in my recovery times since I started using this. Customer service is also incredibly helpful.",
     "verified": true,
     "images": [
-      "/Reviews/AOD.jpeg"
+      "/Reviews/8.jpeg"
     ]
   },
   {
-    "id": 1002,
-    "name": "Sarah M.",
-    "date": "8/7/2026",
+    "id": 2009,
+    "name": "Alex R.",
+    "date": "5/3/2026",
     "rating": 5,
-    "text": "كل حاجة وصلت معقمة وتغليفها ممتاز. وخدمة العملاء كانوا سريعين جداً في الرد على استفساراتي، ما قصروا والله.",
+    "text": "Arrived earlier than expected. The vials are sturdy and the product mixed perfectly without any cloudiness.",
     "verified": true,
     "images": [
-      "/Reviews/Epithalon.jpeg"
+      "/Reviews/10.jpeg"
     ]
   },
   {
-    "id": 1003,
-    "name": "Omar K.",
-    "date": "5/7/2026",
+    "id": 2003,
+    "name": "Saeed M.",
+    "date": "31/3/2026",
     "rating": 5,
-    "text": "شي يفرّح إنك تلاقي شركة فعلاً بتقدم اللي بتوعد بيه. أكيد بطلب منهم مرة تانية.",
+    "text": "ما قصروا والله، العبوات وصلت سليمة ومعقمة ومفعولها واضح من أول استخدام. أكيد بستمر معاهم.",
     "verified": true,
     "images": [
-      "/Reviews/Ghk-cu.jpeg"
+      "/Reviews/4.jpeg"
     ]
   },
   {
-    "id": 1004,
-    "name": "Hassan",
-    "date": "1/7/2026",
+    "id": 2008,
+    "name": "John",
+    "date": "23/5/2026",
     "rating": 5,
-    "text": "I was skeptical at first, but the effectiveness is undeniable. It worked exactly as described and the results were very fast. The customer service team was also very helpful with my questions.",
+    "text": "Lab tests being publicly available is a huge plus. You know exactly what you're getting, and the purity is noticeable.",
     "verified": true,
     "images": [
-      "/Reviews/PT-141.jpeg"
-    ]
-  },
-  {
-    "id": 1005,
-    "name": "Youssef Ali",
-    "date": "28/6/2026",
-    "rating": 5,
-    "text": "الطلبية وصلتني بسرعة وبحالة ممتازة. التغليف وايد احترافي ومبين إنهم مهتمين يحافظون على جودة الببتيدات وقت الشحن. تقييمي لهم ١٠/١٠.",
-    "verified": true,
-    "images": [
-      "/Reviews/Package.jpeg"
-    ]
-  },
-  {
-    "id": 1006,
-    "name": "Rania",
-    "date": "25/6/2026",
-    "rating": 5,
-    "text": "الصراحة غير لي نظامي بالكامل وساعدني أوصل لأهدافي. شهيتي صارت تحت السيطرة وطاقتي مستقرة طول اليوم. أقدر أقول إنه أفضل وأجود ببتيد جربته للحين.",
-    "verified": true,
-    "images": [
-      "/Reviews/Reta.jpeg"
-    ]
-  },
-  {
-    "id": 1007,
-    "name": "Mohamed S.",
-    "date": "20/6/2026",
-    "rating": 5,
-    "text": "The results are mind-blowing. My recovery time is cut in half and I don't feel fatigued anymore. You can literally feel the quality of the product working in your system.",
-    "verified": true,
-    "images": [
-      "/Reviews/SS-31.jpeg"
+      "/Reviews/9.jpeg"
     ]
   },
   {
