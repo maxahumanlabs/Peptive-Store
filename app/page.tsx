@@ -8,6 +8,7 @@ import ProductGrid from '@/components/products/ProductGrid';
 import { Product } from '@/types';
 import { wordpress } from '@/lib/wordpress';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { WHATSAPP_NUMBER } from '@/lib/whatsapp';
 
 export default function HomePage() {
   const { t, language } = useLanguage();
@@ -192,7 +193,7 @@ export default function HomePage() {
                    <p className="text-[11.5px] sm:text-[13px] text-gray-500 leading-tight">{t('hero_static.chat_directly')}</p>
                 </div>
               </div>
-              <a href={`https://wa.me/971506869550?text=${encodeURIComponent(t('hero_static.whatsapp_message'))}`} target="_blank" rel="noopener noreferrer" className="bg-[#0a0521] text-white px-6 py-2.5 rounded-full text-[13px] sm:text-sm font-medium hover:bg-black transition-colors shrink-0 whitespace-nowrap w-full sm:w-auto text-center mt-1 sm:mt-0">
+              <a href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(t('hero_static.whatsapp_message'))}`} target="_blank" rel="noopener noreferrer" className="bg-[#0a0521] text-white px-6 py-2.5 rounded-full text-[13px] sm:text-sm font-medium hover:bg-black transition-colors shrink-0 whitespace-nowrap w-full sm:w-auto text-center mt-1 sm:mt-0">
                 {t('hero_static.ask_whatsapp')}
               </a>
             </div>
