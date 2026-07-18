@@ -156,7 +156,7 @@ export default function Header() {
         <>
           {/* Drawer */}
           <div 
-            className={`fixed right-0 top-0 h-full w-full sm:w-[90%] bg-white shadow-2xl z-60 flex flex-col transition-all duration-500 ease-in-out rounded-l-[2rem] md:hidden ${
+            className={`fixed right-0 top-0 h-full w-full sm:w-[90%] bg-white shadow-2xl z-[60] flex flex-col transition-all duration-500 ease-in-out rounded-l-[2rem] md:hidden ${
               isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
             }`}
           >

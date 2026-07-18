@@ -49,16 +49,37 @@
     }
   }
   
+  @keyframes marquee-rtl {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(50%);
+    }
+  }
+  
   .animate-marquee {
     animation: marquee 30s linear infinite;
+  }
+  
+  html[dir="rtl"] .animate-marquee {
+    animation: marquee-rtl 30s linear infinite;
   }
 
   .animate-marquee-base {
     animation: marquee 30s linear infinite;
   }
 
+  html[dir="rtl"] .animate-marquee-base {
+    animation: marquee-rtl 30s linear infinite;
+  }
+
   .animate-marquee-fast {
     animation: marquee 15s linear infinite;
+  }
+
+  html[dir="rtl"] .animate-marquee-fast {
+    animation: marquee-rtl 15s linear infinite;
   }
 
   @keyframes wave {
