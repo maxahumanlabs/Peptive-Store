@@ -49,7 +49,7 @@ export default function Header() {
   ];
 
   return (
-    <header className="bg-white sticky top-0 z-40 w-full">
+    <header className={`bg-white sticky top-0 w-full ${isMobileMenuOpen ? 'z-[60]' : 'z-40'}`}>
       <nav className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48 max-w-[1600px] mx-auto">
         <div className="flex justify-between items-center h-32">
           {/* Logo */}

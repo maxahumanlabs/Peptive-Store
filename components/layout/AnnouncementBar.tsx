@@ -45,7 +45,6 @@ export default function AnnouncementBar() {
         {/* Marquee - fixed width, centered in the bar */}
         <div
           className="absolute left-1/2 -translate-x-1/2 w-[587px] max-w-full overflow-hidden"
-          dir="ltr"
         >
           <div className="flex w-max animate-marquee hover:[animation-play-state:paused]">
             <Track />
