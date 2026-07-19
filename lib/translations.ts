@@ -330,9 +330,9 @@ export const translations = {
       saudi: "شحن سريع داخل السعودية على كل الطلبات"
     },
     header: {
-      home: "بيتبيت",
+      home: "الرئيسية",
       all_peptides: "جميع الببتيدات",
-      oral_peptides: "مكملات الببتيدات الفموية",
+      oral_peptides: "مكملات الببتيدات",
       dosage_calculator: "حاسبة الجرعات",
       peptive_ai: "Peptive AI",
       login: "تسجيل الدخول",
@@ -378,7 +378,7 @@ export const translations = {
     brand: {
       research: "البحث",
       starts_with: "يبدأ بـ",
-      peptive: "الببتيدية"
+      peptive: "Peptive"
     },
     trending: {
       title: "الأبحاث الرائجة"
