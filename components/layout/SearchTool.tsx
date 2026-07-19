@@ -97,7 +97,7 @@ export default function SearchTool() {
       {/* Search Icon Button */}
       <button
         onClick={() => setIsOpen(true)}
-        className="hidden md:block p-1 text-gray-700 hover:text-gray-900 transition-all duration-300 hover:animate-wiggle"
+        className="p-1 text-gray-700 hover:text-gray-900 transition-all duration-300 hover:animate-wiggle"
         aria-label="Search"
       >
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
