@@ -13,6 +13,8 @@ interface SearchProduct {
   slug: string;
   prices: {
     price: string;
+    regular_price: string;
+    sale_price: string;
     currency_code: string;
   };
   images: Array<{ src: string }>;
@@ -77,12 +79,9 @@ export default function SearchTool() {
   }, [query]);
 
   // Format price helper
-  const formatPrice = (centsString: string, currency: string) => {
+  const formatPrice = (centsString: string) => {
     const price = parseInt(centsString) / 100;
-    return new Intl.NumberFormat(language === 'ar' ? 'ar-AE' : 'en-AE', {
-      style: 'currency',
-      currency: currency || 'AED',
-    }).format(price);
+    return `Dhs. ${price.toFixed(2)}`;
   };
 
   const getTranslatedName = (product: any) => {
@@ -177,9 +176,22 @@ export default function SearchTool() {
                         </div>
                         <div className="flex-1 min-w-0">
                           <h4 className="font-semibold text-gray-900 truncate">{getTranslatedName(product)}</h4>
-                          <p className="text-sm font-medium text-primary-600">
-                            {formatPrice(product.prices.price, product.prices.currency_code)}
-                          </p>
+                          <div className="flex items-baseline gap-2 mt-0.5">
+                            {product.prices.regular_price && product.prices.regular_price !== product.prices.price ? (
+                              <>
+                                <span className="text-xs text-black line-through">
+                                  {formatPrice(product.prices.regular_price)}
+                                </span>
+                                <span className="text-sm font-bold text-red-600">
+                                  {formatPrice(product.prices.price)}
+                                </span>
+                              </>
+                            ) : (
+                              <span className="text-sm font-bold text-black">
+                                {formatPrice(product.prices.price)}
+                              </span>
+                            )}
+                          </div>
                         </div>
                       </Link>
                     ))}
