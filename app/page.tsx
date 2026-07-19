@@ -114,8 +114,8 @@ export default function HomePage() {
         <div className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 max-w-[1400px] mx-auto w-full flex flex-col md:flex-row relative z-20 pt-[270px] md:pt-0">
           
           {/* Left Content */}
-          <div className={`w-full md:w-[48%] flex flex-col items-center md:items-start text-center ${language === 'ar' ? 'md:text-right md:items-end md:ml-auto' : 'md:text-left'}`}>
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold text-[#09031c] mb-6 md:mb-4 leading-[1.1] tracking-tight order-1">
+          <div className={`w-full md:w-[48%] flex flex-col items-center text-center ${language === 'ar' ? 'md:text-right md:items-end md:ml-auto' : 'md:text-left md:items-start'}`}>
+            <h1 className={`text-4xl md:text-5xl lg:text-7xl font-extrabold text-[#09031c] mb-6 md:mb-4 tracking-tight order-1 ${language === 'ar' ? 'leading-[1.4]' : 'leading-[1.1]'}`}>
               {t('hero_static.title_1')}<br />{t('hero_static.title_2')}
             </h1>
             

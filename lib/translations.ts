@@ -630,7 +630,19 @@ export const translations = {
       one_month: "شهر واحد",
       three_months: "٣ أشهر",
       six_months: "٦ أشهر",
-      buy_now: "اشترِ الآن"
+      buy_now: "اشترِ الآن",
+      tag_three_months: "نتائج أسرع وأدوم",
+      tag_two_months: "الأكثر طلباً",
+      tag_one_month: "للتجربة",
+      bottle: "عبوة",
+      bottles: "عبوات",
+      free_gifts: "هدايا مجانية",
+      gift_free_shipping: "شحن مجاني",
+      gift_bac_water: "ماء بكتيري",
+      gift_ebook: "كتاب إلكتروني للبيبتيدات",
+      gift_ai_coach: "مدرب ذكاء اصطناعي",
+      gift_mystery: "مكمل غذائي غامض 1",
+      unlock_gifts: "افتح الهدايا المجانية مع طلبك"
     }
   }
 };
