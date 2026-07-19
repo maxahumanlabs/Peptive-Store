@@ -80,16 +80,7 @@ export default function Footer() {
                 </div>
               </FooterSection>
 
-              {/* Quick Links */}
-              <FooterSection title={t('footer.quick_links')}>
-                <ul className="space-y-2">
-                  <li>
-                    <Link href="/search" className="text-gray-300 hover:text-white text-base lg:text-base xl:text-lg 2xl:text-xl transition-colors">
-                      {t('footer.search')}
-                    </Link>
-                  </li>
-                </ul>
-              </FooterSection>
+
 
               {/* Contact */}
               <FooterSection title={t('footer.contact')}>
