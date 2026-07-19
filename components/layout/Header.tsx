@@ -10,6 +10,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import LanguageSelector from '@/components/LanguageSelector';
 import CountrySelector from '@/components/CountrySelector';
 import MobileLanguageToggle from '@/components/MobileLanguageToggle';
+import SearchTool from './SearchTool';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -82,6 +83,8 @@ export default function Header() {
             <div className="md:hidden mr-2">
               <MobileLanguageToggle />
             </div>
+            {/* Search Icon */}
+            <SearchTool />
             
             {/* User Icon - Desktop Only */}
             <Link 
