@@ -205,7 +205,14 @@ export const translations = {
       copyright: "© 2026 Peptive Pept. Powered by Shopify",
       privacy_policy: "Privacy policy",
       terms_of_service: "Terms of service",
-      disclaimer_title: "Research Disclaimer"
+      disclaimer_title: "Research Disclaimer",
+      disclaimer_p1: "All products presented on this website are intended exclusively for in-vitro laboratory research and scientific investigation by qualified professionals. Nothing herein constitutes medical advice, therapeutic recommendation, or endorsement for human or animal consumption.",
+      disclaimer_p2: "Peptive does not advocate or condone any off-label use, self-administration, or application beyond controlled research environments. All compounds are sold strictly for academic and investigational purposes. Purchasers assume full responsibility for compliance with applicable regulations. Consultation with research ethics boards, medical advisors, and legal counsel is recommended prior to purchase.",
+      disclaimer_p3: "Peptive does not provide medical services, nor is it a substitute for medical consultations. All products are intended solely for laboratory research use. Any mention of potential effects is provided for informational purposes only.",
+      disclaimer_p4: "The statements made within this website have not been evaluated by health authorities. The statements and the products of this company are intended for research and educational purposes only.",
+      disclaimer_p5_pre: "Please refer to our ",
+      disclaimer_p5_link: "Terms Of Service",
+      disclaimer_p5_post: " prior to purchasing. By purchasing products, you confirm that you are at least 21 years old."
     },
     authentication: {
       title: "Authentication",
@@ -528,7 +535,14 @@ export const translations = {
       copyright: "© 2026 Peptive Pept. مدعوم من Shopify",
       privacy_policy: "سياسة الخصوصية",
       terms_of_service: "شروط الخدمة",
-      disclaimer_title: "إخلاء المسؤولية البحثي"
+      disclaimer_title: "إخلاء مسؤولية للبحوث",
+      disclaimer_p1: "جميع المنتجات المعروضة على هذا الموقع مخصصة حصريًا للبحث المختبري والتحقيق العلمي بواسطة متخصصين مؤهلين. لا يوجد هنا ما يشكل نصيحة طبية، أو توصية علاجية، أو موافقة للاستهلاك البشري أو الحيواني.",
+      disclaimer_p2: "بيبتيف لا تدافع عن أو تتغاضى عن أي استخدام خارج النطاق، أو الإدارة الذاتية، أو التطبيق خارج بيئات البحث الخاضعة للرقابة. تُباع جميع المركبات بصرامة للأغراض الأكاديمية والبحثية. يتحمل المشترون المسؤولية الكاملة عن الامتثال للوائح المعمول بها. يوصى بالتشاور مع لجان أخلاقيات البحث والمستشارين الطبيين والمستشارين القانونيين قبل الشراء.",
+      disclaimer_p3: "لا تقدم بيبتيف خدمات طبية، ولا تعتبر بديلاً عن الاستشارات الطبية. جميع المنتجات مخصصة حصريًا للاستخدام في الأبحاث المختبرية. يتم توفير أي ذكر للتأثيرات المحتملة لأغراض إعلامية فقط.",
+      disclaimer_p4: "البيانات الواردة في هذا الموقع لم يتم تقييمها من قبل السلطات الصحية. البيانات ومنتجات هذه الشركة مخصصة للأغراض البحثية والتعليمية فقط.",
+      disclaimer_p5_pre: "يرجى الرجوع إلى ",
+      disclaimer_p5_link: "شروط الخدمة",
+      disclaimer_p5_post: " الخاصة بنا قبل الشراء. بشراء المنتجات، فإنك تؤكد أن عمرك لا يقل عن 21 عامًا."
     },
     authentication: {
       title: "مصادقة",

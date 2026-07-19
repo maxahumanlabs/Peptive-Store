@@ -66,16 +66,16 @@ export default function Footer() {
                   <p className="font-bold text-white uppercase tracking-wide">
                     {t('footer.disclaimer_title')}
                   </p>
-                  <p>{`All products presented on this website are intended exclusively for in-vitro laboratory research and scientific investigation by qualified professionals. Nothing herein constitutes medical advice, therapeutic recommendation, or endorsement for human or animal consumption.`}</p>
-                  <p>{`Peptive does not advocate or condone any off-label use, self-administration, or application beyond controlled research environments. All compounds are sold strictly for academic and investigational purposes. Purchasers assume full responsibility for compliance with applicable regulations. Consultation with research ethics boards, medical advisors, and legal counsel is recommended prior to purchase.`}</p>
-                  <p>{`Peptive does not provide medical services, nor is it a substitute for medical consultations. All products are intended solely for laboratory research use. Any mention of potential effects is provided for informational purposes only.`}</p>
-                  <p>{`The statements made within this website have not been evaluated by health authorities. The statements and the products of this company are intended for research and educational purposes only.`}</p>
+                  <p>{t('footer.disclaimer_p1')}</p>
+                  <p>{t('footer.disclaimer_p2')}</p>
+                  <p>{t('footer.disclaimer_p3')}</p>
+                  <p>{t('footer.disclaimer_p4')}</p>
                   <p>
-                    {`Please refer to our `}
+                    {t('footer.disclaimer_p5_pre')}
                     <Link href="/terms-of-service" className="text-white underline hover:text-white/70 transition-colors">
-                      Terms Of Service
+                      {t('footer.disclaimer_p5_link')}
                     </Link>
-                    {` prior to purchasing. By purchasing products, you confirm that you are at least 21 years old.`}
+                    {t('footer.disclaimer_p5_post')}
                   </p>
                 </div>
               </FooterSection>
