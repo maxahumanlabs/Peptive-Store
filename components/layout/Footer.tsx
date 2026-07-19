@@ -43,21 +43,14 @@ function FooterSection({
 }
 
 export default function Footer() {
+  const { language, t } = useLanguage();
   const currentYear = new Date().getFullYear();
-  const [email, setEmail] = useState('');
-  const { t } = useLanguage();
-
-  const handleNewsletterSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Newsletter signup:', email);
-    setEmail('');
-  };
 
   return (
     <>
       <footer className="bg-[#1f1f1f] text-white w-full">
         <div className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48 pt-16 md:pt-24 pb-12 max-w-[1600px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 xl:gap-12 2xl:gap-24">
+          <div className="grid grid-cols-1 gap-10 lg:gap-12 xl:gap-12 2xl:gap-24">
             {/* Left Column - Collapsible sections */}
             <div className="rounded-2xl border border-white/10 px-4 md:px-0 md:border-0 md:rounded-none md:space-y-12">
               {/* Peptive - Research Disclaimer */}
@@ -93,31 +86,6 @@ export default function Footer() {
                   </a>
                 </div>
               </FooterSection>
-            </div>
-
-            {/* Right Column - Newsletter */}
-            <div className="mt-4 lg:mt-0">
-              <h3 className="text-white font-bold text-2xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-5xl mb-6 leading-tight">
-                {t('footer.join')}
-              </h3>
-              <form onSubmit={handleNewsletterSubmit} className="flex items-center gap-2">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder={t('footer.email_placeholder')}
-                  className="flex-1 bg-transparent border-b-2 border-gray-600 focus:border-white py-3 px-2 text-white placeholder-gray-500 outline-none transition-colors"
-                  required
-                />
-                <button
-                  type="submit"
-                  className="w-12 h-12 bg-white rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors flex-shrink-0"
-                >
-                  <svg className="w-5 h-5 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
-                </button>
-              </form>
             </div>
           </div>
         </div>
