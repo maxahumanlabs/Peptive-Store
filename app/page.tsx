@@ -120,7 +120,7 @@ export default function HomePage() {
             </h1>
             
             {/* Main CTA */}
-            <Link href="/products" className="w-full sm:w-auto order-2 md:order-8 mb-6 md:mb-0 md:mt-8">
+            <Link href="/collections/all/products" className="w-full sm:w-auto order-2 md:order-8 mb-6 md:mb-0 md:mt-8">
               <button className="bg-[#0a0521] text-white px-8 py-4 rounded-full text-[15px] md:text-base font-medium md:font-bold tracking-wide transition-all hover:bg-black w-full sm:w-auto shadow-lg hover:shadow-xl hover:-translate-y-0.5">
                 {t('hero_static.discover')}
               </button>

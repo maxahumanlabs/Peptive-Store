@@ -37,7 +37,7 @@ export default function CheckoutCancelPage() {
               Return to Cart
             </button>
           </Link>
-          <Link href="/products">
+          <Link href="/collections/all/products">
             <button className="w-full sm:w-auto border-2 border-gray-900 text-gray-900 font-semibold px-8 py-4 rounded-full hover:bg-gray-50 transition-all">
               Continue Shopping
             </button>

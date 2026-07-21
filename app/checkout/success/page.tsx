@@ -56,7 +56,7 @@ function SuccessContent() {
 
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link href="/products">
+          <Link href="/collections/all/products">
             <button className="w-full sm:w-auto bg-gray-900 text-white font-semibold px-8 py-4 rounded-full hover:bg-gray-800 transition-all">
               Continue Shopping
             </button>

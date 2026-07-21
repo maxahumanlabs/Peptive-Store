@@ -56,7 +56,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   // (so the quick-add buttons keep their own behaviour).
   const handleCardClick = (e: React.MouseEvent) => {
     if (!(e.target as HTMLElement).closest('button')) {
-      router.push(`/products/${product.slug}`);
+      router.push(`/collections/all/products/${product.slug}`);
     }
   };
 

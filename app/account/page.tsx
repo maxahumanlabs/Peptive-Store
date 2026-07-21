@@ -209,7 +209,7 @@ export default function AccountPage() {
                     <div className="text-center py-12">
                       <p className="text-sm text-gray-600 mb-6">No orders yet</p>
                       <Link 
-                        href="/products"
+                        href="/collections/all/products"
                         className="inline-block bg-gray-900 text-white text-sm py-2.5 px-6 rounded-lg hover:bg-gray-800 transition-all duration-200 shadow-md"
                       >
                         Start Shopping

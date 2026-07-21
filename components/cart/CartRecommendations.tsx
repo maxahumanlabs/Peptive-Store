@@ -48,7 +48,7 @@ export default function CartRecommendations({ onNavigate }: CartRecommendationsP
             className="flex items-center gap-3 border border-gray-200 rounded-2xl p-3"
           >
             <Link
-              href={`/products/${p.slug}`}
+              href={`/collections/all/products/${p.slug}`}
               onClick={onNavigate}
               className="flex-shrink-0"
             >
@@ -59,7 +59,7 @@ export default function CartRecommendations({ onNavigate }: CartRecommendationsP
               />
             </Link>
             <div className="flex-1 min-w-0">
-              <Link href={`/products/${p.slug}`} onClick={onNavigate} className="block">
+              <Link href={`/collections/all/products/${p.slug}`} onClick={onNavigate} className="block">
                 <p className="text-sm text-gray-900 font-medium truncate hover:underline">
                   {displayName(p)}
                 </p>

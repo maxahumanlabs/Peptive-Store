@@ -39,7 +39,7 @@ export default function CartPage() {
           <p className="text-lg md:text-xl lg:text-xl xl:text-xl 2xl:text-2xl text-gray-600 mb-10 lg:mb-10 xl:mb-10 2xl:mb-12">
             Looks like you haven&apos;t added any items to your cart yet.
           </p>
-          <Link href="/products">
+          <Link href="/collections/all/products">
             <button className="bg-gray-900 text-white text-lg md:text-xl lg:text-xl xl:text-xl 2xl:text-2xl font-semibold py-5 lg:py-5 xl:py-5 2xl:py-6 px-10 lg:px-10 xl:px-10 2xl:px-12 rounded-full hover:bg-gray-800 transform hover:scale-[1.02] transition-all duration-200 shadow-lg">
               Continue Shopping
             </button>
@@ -83,7 +83,7 @@ export default function CartPage() {
             </div>
 
             <div className="mt-10 lg:mt-10 xl:mt-10 2xl:mt-12 pt-8 lg:pt-8 xl:pt-8 2xl:pt-10 border-t-2 border-gray-100">
-              <Link href="/products">
+              <Link href="/collections/all/products">
                 <button className="border-2 border-gray-900 text-gray-900 text-base md:text-lg lg:text-lg xl:text-lg 2xl:text-xl font-semibold py-4 lg:py-4 xl:py-4 2xl:py-5 px-8 lg:px-8 xl:px-8 2xl:px-10 rounded-full hover:bg-gray-50 transition-all">
                   Continue Shopping
                 </button>

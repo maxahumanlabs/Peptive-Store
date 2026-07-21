@@ -158,7 +158,7 @@ export default function SearchTool() {
                     {results.map((product) => (
                       <Link 
                         key={product.id}
-                        href={`/products/${product.slug}`}
+                        href={`/collections/all/products/${product.slug}`}
                         onClick={() => setIsOpen(false)}
                         className="flex items-center gap-4 p-3 hover:bg-gray-50 rounded-xl transition-colors group"
                       >

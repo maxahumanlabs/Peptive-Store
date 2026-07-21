@@ -19,7 +19,7 @@ const nextConfig = {
   async rewrites() {
     return [
       // Canonical category URLs — used in ads and menu links
-      { source: '/collections/all', destination: '/products' },
+      { source: '/collections/all', destination: '/collections/all/products' },
       { source: '/collections/oral-peptide-supplements', destination: '/oral-peptides' },
     ];
   },
@@ -28,6 +28,8 @@ const nextConfig = {
       // Old short URLs → canonical /collections/* (preserves ad / share traffic)
       { source: '/all', destination: '/collections/all', permanent: true },
       { source: '/oral', destination: '/collections/oral-peptide-supplements', permanent: true },
+      { source: '/products', destination: '/collections/all/products', permanent: true },
+      { source: '/products/:slug*', destination: '/collections/all/products/:slug*', permanent: true },
     ];
   },
 };
