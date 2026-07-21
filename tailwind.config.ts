@@ -36,11 +36,15 @@ const config: Config = {
           '0%': { width: '100%' },
           '100%': { width: 'var(--stock-end, 45%)' },
         },
+        'ping-slow': {
+          '75%, 100%': { transform: 'scale(1.4)', opacity: '0' },
+        },
       },
       animation: {
         'hero-reveal': 'hero-reveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) both',
         marquee: 'marquee 25s linear infinite',
         'stock-drain': 'stock-drain 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both',
+        'ping-slow': 'ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite',
       },
     },
   },

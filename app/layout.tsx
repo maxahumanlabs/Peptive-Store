@@ -52,7 +52,7 @@ export default function RootLayout({
           {/* WhatsApp Button - global */}
           <div className="fixed bottom-4 left-4 z-50 flex items-center justify-center">
             {/* Ping effect */}
-            <div className="absolute inset-0 bg-green-500 rounded-full animate-ping opacity-75"></div>
+            <div className="absolute inset-0 bg-green-500 rounded-full animate-ping-slow opacity-75"></div>
             {/* Button */}
             <a
               href="https://wa.me/971558225919?text=Hello!%20I%20would%20like%20to%20inquire%20about%20Peptive%20products"
