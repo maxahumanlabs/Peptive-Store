@@ -129,20 +129,26 @@ export default function StackBuilder({ category }: StackBuilderProps) {
 
                   {/* Info */}
                   <div className="bg-gray-50 p-5">
-                    <div className="flex items-start justify-between gap-3 mb-4">
+                    <div className="flex flex-col gap-2 mb-4">
                       <div className="min-w-0">
-                        <p className="text-gray-500 text-xs xl:text-sm mb-1 uppercase tracking-wide">Peptive</p>
-                        <h3 className="text-gray-900 text-base lg:text-lg font-medium break-words">
+                        <p className="text-gray-500 text-[10px] lg:text-xs xl:text-xs mb-1 uppercase tracking-wide">
+                          Peptive
+                        </p>
+                        <h3 className="text-gray-900 text-base lg:text-lg xl:text-xl font-medium break-words">
                           {displayName(product)}
                         </h3>
                       </div>
-                      <div className="text-right flex-shrink-0">
-                        <p className="text-red-500 font-semibold text-base lg:text-lg whitespace-nowrap">
+                      <div className="flex items-baseline gap-2">
+                        <p className="text-red-500 font-semibold text-sm lg:text-base xl:text-base whitespace-nowrap">
                           {formatPrice(product.price)}
                         </p>
                         {product.onSale && product.regularPrice && parseFloat(product.regularPrice) > parseFloat(product.price) && (
-                          <p className="text-gray-400 text-sm line-through whitespace-nowrap">
+                          <p className="relative inline-block text-gray-400 text-xs lg:text-sm xl:text-sm whitespace-nowrap">
                             {formatPrice(product.regularPrice)}
+                            <span
+                              aria-hidden="true"
+                              className="pointer-events-none absolute left-0 right-0 top-1/2 h-px bg-red-500 -rotate-6"
+                            />
                           </p>
                         )}
                       </div>
