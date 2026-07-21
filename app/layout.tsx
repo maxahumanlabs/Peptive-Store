@@ -66,6 +66,7 @@ export default function RootLayout({
               </svg>
             </a>
           </div>
+        </div>
         </LanguageProvider>
       </body>
     </html>
