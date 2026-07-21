@@ -37,7 +37,7 @@ const config: Config = {
           '100%': { width: 'var(--stock-end, 45%)' },
         },
         'ping-slow': {
-          '75%, 100%': { transform: 'scale(1.4)', opacity: '0' },
+          '75%, 100%': { transform: 'scale(1.65)', opacity: '0' },
         },
       },
       animation: {
