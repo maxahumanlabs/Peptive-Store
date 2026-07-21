@@ -9,9 +9,10 @@ import { useState } from 'react';
 
 interface ProductCardProps {
   product: Product;
+  collectionSlug?: string;
 }
 
-export default function ProductCard({ product }: ProductCardProps) {
+export default function ProductCard({ product, collectionSlug = 'all' }: ProductCardProps) {
   const { language, t } = useLanguage();
   const router = useRouter();
   const addItem = useCartStore((state) => state.addItem);
@@ -56,7 +57,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   // (so the quick-add buttons keep their own behaviour).
   const handleCardClick = (e: React.MouseEvent) => {
     if (!(e.target as HTMLElement).closest('button')) {
-      router.push(`/collections/all/products/${product.slug}`);
+      router.push(`/collections/${collectionSlug}/products/${product.slug}`);
     }
   };
 

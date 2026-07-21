@@ -4,9 +4,10 @@ import ProductCard from './ProductCard';
 interface ProductGridProps {
   products: Product[];
   emptyMessage?: string;
+  collectionSlug?: string;
 }
 
-export default function ProductGrid({ products, emptyMessage = 'No products found' }: ProductGridProps) {
+export default function ProductGrid({ products, emptyMessage = 'No products found', collectionSlug = 'all' }: ProductGridProps) {
   if (products.length === 0) {
     return (
       <div className="text-center py-16">
@@ -32,7 +33,7 @@ export default function ProductGrid({ products, emptyMessage = 'No products foun
   return (
     <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
       {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
+        <ProductCard key={product.id} product={product} collectionSlug={collectionSlug} />
       ))}
     </div>
   );

@@ -68,7 +68,7 @@ export default function OralPeptidesPage() {
           </div>
         ) : products.length > 0 ? (
           <>
-            <ProductGrid products={products} />
+            <ProductGrid products={products} collectionSlug="oral-peptide-supplements" />
 
             {/* Results Count */}
             <div className="mt-12 text-center text-gray-600">

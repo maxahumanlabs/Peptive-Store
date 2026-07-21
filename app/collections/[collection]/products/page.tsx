@@ -7,12 +7,15 @@ import ProductGrid from '@/components/products/ProductGrid';
 import StackBuilder from '@/components/products/StackBuilder';
 import { useLanguage } from '@/contexts/LanguageContext';
 
-const CATEGORY = 'all';
-
-export default function ProductsPage() {
+export default function ProductsPage({ params }: { params: { collection: string } }) {
   const { t } = useLanguage();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+
+  let CATEGORY = params.collection;
+  if (CATEGORY === 'oral-peptide-supplements') {
+    CATEGORY = 'oral';
+  }
 
   useEffect(() => {
     async function loadProducts() {
@@ -63,12 +66,11 @@ export default function ProductsPage() {
       <section className="max-w-[1600px] mx-auto px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48 py-12">
         {loading ? (
           <div className="text-center py-12">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto"></div>
-            <p className="text-gray-500 mt-4">{t('products.loading')}</p>
+            <div className="w-8 h-8 border-4 border-gray-900 border-t-transparent rounded-full animate-spin mx-auto" />
           </div>
         ) : products.length > 0 ? (
           <>
-            <ProductGrid products={products} />
+            <ProductGrid products={products} collectionSlug={params.collection} />
 
             {/* Results Count */}
             <div className="mt-12 text-center text-gray-600">
