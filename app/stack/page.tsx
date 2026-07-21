@@ -226,20 +226,26 @@ export default function StackPage() {
 
                       {/* Product Info */}
                       <div className="bg-gray-50 p-5">
-                        <div className="flex items-start justify-between mb-4">
-                          <div>
-                            <p className="text-gray-500 text-xs lg:text-xs xl:text-sm 2xl:text-sm mb-1 uppercase tracking-wide">
+                        <div className="flex flex-col gap-2 mb-4">
+                          <div className="min-w-0">
+                            <p className="text-gray-500 text-[10px] lg:text-xs xl:text-xs mb-1 uppercase tracking-wide">
                               Peptive
                             </p>
-                            <h3 className="text-gray-900 text-base lg:text-base xl:text-lg 2xl:text-xl font-medium">{language === 'ar' && (product as any).arabic_name ? (product as any).arabic_name : product.name}</h3>
+                            <h3 className="text-gray-900 text-base lg:text-lg xl:text-xl font-medium break-words">
+                              {language === 'ar' && (product as any).arabic_name ? (product as any).arabic_name : product.name}
+                            </h3>
                           </div>
-                          <div className="text-right">
-                            <p className="text-red-500 font-semibold text-base lg:text-base xl:text-lg 2xl:text-xl">
+                          <div className="flex items-baseline gap-2">
+                            <p className="text-red-500 font-semibold text-sm lg:text-base xl:text-base whitespace-nowrap">
                               Dhs. {parseFloat(product.price).toFixed(2)}
                             </p>
                             {product.onSale && product.regularPrice && parseFloat(product.regularPrice) > parseFloat(product.price) && (
-                              <p className="text-gray-400 text-sm lg:text-sm xl:text-base 2xl:text-lg line-through">
+                              <p className="relative inline-block text-gray-400 text-xs lg:text-sm xl:text-sm whitespace-nowrap">
                                 Dhs. {parseFloat(product.regularPrice).toFixed(2)}
+                                <span
+                                  aria-hidden="true"
+                                  className="pointer-events-none absolute left-0 right-0 top-1/2 h-px bg-red-500 -rotate-6"
+                                />
                               </p>
                             )}
                           </div>
