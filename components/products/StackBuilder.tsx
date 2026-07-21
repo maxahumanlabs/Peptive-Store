@@ -16,6 +16,7 @@ export default function StackBuilder({ category }: StackBuilderProps) {
   const [stackProducts, setStackProducts] = useState<Product[]>([]);
   const [stackItems, setStackItems] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+  const [addedId, setAddedId] = useState<number | null>(null);
   const addToCart = useCartStore((state) => state.addItem);
 
   useEffect(() => {
@@ -53,7 +54,13 @@ export default function StackBuilder({ category }: StackBuilderProps) {
     localStorage.setItem('peptive-stack', JSON.stringify(items));
   };
 
-  const addToStack = (product: Product) => persist([...stackItems, product]);
+  const addToStack = (product: Product) => {
+    persist([...stackItems, product]);
+    setAddedId(product.id);
+    setTimeout(() => {
+      setAddedId((current) => (current === product.id ? null : current));
+    }, 1500);
+  };
   const removeFromStack = (id: number) =>
     persist(stackItems.filter((item) => item.id !== id));
 
@@ -132,13 +139,23 @@ export default function StackBuilder({ category }: StackBuilderProps) {
                       onClick={() => addToStack(product)}
                       disabled={product.stockStatus !== 'instock'}
                       aria-label={t('stack.add_button')}
-                      className={`md:hidden absolute bottom-3 right-3 w-11 h-11 rounded-full flex items-center justify-center shadow-lg z-20 text-white ${
-                        product.stockStatus === 'instock' ? 'bg-gray-900' : 'bg-gray-400 cursor-not-allowed'
+                      className={`md:hidden absolute bottom-3 right-3 w-11 h-11 rounded-full flex items-center justify-center shadow-lg z-20 text-white transition-all duration-300 ${
+                        addedId === product.id 
+                          ? 'bg-green-500 scale-110' 
+                          : product.stockStatus === 'instock' 
+                            ? 'bg-gray-900' 
+                            : 'bg-gray-400 cursor-not-allowed'
                       }`}
                     >
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                      </svg>
+                      {addedId === product.id ? (
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                        </svg>
+                      ) : (
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                      )}
                     </button>
                   </div>
 
@@ -172,9 +189,20 @@ export default function StackBuilder({ category }: StackBuilderProps) {
                     {product.stockStatus === 'instock' ? (
                       <button
                         onClick={() => addToStack(product)}
-                        className="hidden md:block w-full bg-gray-900 text-white font-semibold py-3 text-base rounded-full hover:bg-gray-800 transition-colors"
+                        className={`hidden md:block w-full font-semibold py-3 text-base rounded-full transition-all duration-300 flex items-center justify-center gap-2 ${
+                          addedId === product.id ? 'bg-green-500 text-white' : 'bg-gray-900 text-white hover:bg-gray-800'
+                        }`}
                       >
-                        {t('stack.add_button')}
+                        {addedId === product.id ? (
+                          <>
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                            </svg>
+                            {t('stack.added_button') || 'Added!'}
+                          </>
+                        ) : (
+                          t('stack.add_button')
+                        )}
                       </button>
                     ) : (
                       <button
