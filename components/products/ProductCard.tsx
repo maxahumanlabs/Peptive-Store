@@ -5,6 +5,7 @@ import { Product } from '@/types';
 import { decodeHtmlEntities } from '@/lib/utils';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useCartStore } from '@/store/cartStore';
+import { useState } from 'react';
 
 interface ProductCardProps {
   product: Product;
@@ -15,6 +16,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   const router = useRouter();
   const addItem = useCartStore((state) => state.addItem);
   const openCart = useCartStore((state) => state.openCart);
+  const [isAdded, setIsAdded] = useState(false);
 
   // Get localized product name
   const rawProductName = language === 'ar' && (product as any).arabic_name
@@ -45,6 +47,8 @@ export default function ProductCard({ product }: ProductCardProps) {
       bundleLabel: t('bundle.one_month'),
       arabicName: (product as any).arabic_name || '',
     });
+    setIsAdded(true);
+    setTimeout(() => setIsAdded(false), 1500);
     openCart();
   };
 
@@ -104,11 +108,20 @@ export default function ProductCard({ product }: ProductCardProps) {
             type="button"
             onClick={handleAddToCart}
             disabled={!inStock}
-            className={`w-full py-3 rounded-full font-semibold text-white transition-colors ${
+            className={`w-full py-3 rounded-full font-semibold text-white transition-colors flex items-center justify-center gap-2 ${
               inStock ? 'bg-gray-900 hover:bg-gray-800' : 'bg-gray-600 cursor-not-allowed'
             }`}
           >
-            {inStock ? t('product_detail.add_to_cart') : t('stack.sold_out')}
+            {isAdded ? (
+              <>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                {t('stack.added_button') || 'Added!'}
+              </>
+            ) : (
+              inStock ? t('product_detail.add_to_cart') : t('stack.sold_out')
+            )}
           </button>
         </div>
 
@@ -118,13 +131,19 @@ export default function ProductCard({ product }: ProductCardProps) {
           onClick={handleAddToCart}
           disabled={!inStock}
           aria-label={t('product_detail.add_to_cart')}
-          className={`md:hidden absolute bottom-3 right-3 w-11 h-11 rounded-full flex items-center justify-center shadow-lg z-20 text-white ${
+          className={`md:hidden absolute bottom-3 right-3 w-11 h-11 rounded-full flex items-center justify-center shadow-lg z-20 text-white transition-all duration-300 ${
             inStock ? 'bg-gray-900' : 'bg-gray-400 cursor-not-allowed'
           }`}
         >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-          </svg>
+          {isAdded ? (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+            </svg>
+          ) : (
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+            </svg>
+          )}
         </button>
       </div>
 

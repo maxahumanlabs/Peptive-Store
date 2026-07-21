@@ -140,11 +140,9 @@ export default function StackBuilder({ category }: StackBuilderProps) {
                       disabled={product.stockStatus !== 'instock'}
                       aria-label={t('stack.add_button')}
                       className={`md:hidden absolute bottom-3 right-3 w-11 h-11 rounded-full flex items-center justify-center shadow-lg z-20 text-white transition-all duration-300 ${
-                        addedId === product.id 
-                          ? 'bg-green-500 scale-110' 
-                          : product.stockStatus === 'instock' 
-                            ? 'bg-gray-900' 
-                            : 'bg-gray-400 cursor-not-allowed'
+                        product.stockStatus === 'instock' 
+                          ? 'bg-gray-900' 
+                          : 'bg-gray-400 cursor-not-allowed'
                       }`}
                     >
                       {addedId === product.id ? (
@@ -190,7 +188,7 @@ export default function StackBuilder({ category }: StackBuilderProps) {
                       <button
                         onClick={() => addToStack(product)}
                         className={`hidden md:block w-full font-semibold py-3 text-base rounded-full transition-all duration-300 flex items-center justify-center gap-2 ${
-                          addedId === product.id ? 'bg-green-500 text-white' : 'bg-gray-900 text-white hover:bg-gray-800'
+                          addedId === product.id ? 'bg-gray-900 text-white hover:bg-gray-800' : 'bg-gray-900 text-white hover:bg-gray-800'
                         }`}
                       >
                         {addedId === product.id ? (
