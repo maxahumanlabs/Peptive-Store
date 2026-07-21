@@ -115,7 +115,7 @@ export default function StackBuilder({ category }: StackBuilderProps) {
                   </div>
 
                   {/* Image */}
-                  <div className="relative bg-gray-100 aspect-square overflow-hidden">
+                  <div className="relative bg-gray-100 aspect-square overflow-hidden group">
                     {product.images && product.images.length > 0 ? (
                       <img
                         src={product.images[0] || '/placeholder.jpg'}
@@ -125,6 +125,21 @@ export default function StackBuilder({ category }: StackBuilderProps) {
                     ) : (
                       <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300" />
                     )}
+
+                    {/* Mobile: persistent circular "+" button */}
+                    <button
+                      type="button"
+                      onClick={() => addToStack(product)}
+                      disabled={product.stockStatus !== 'instock'}
+                      aria-label={t('stack.add_button')}
+                      className={`md:hidden absolute bottom-3 right-3 w-11 h-11 rounded-full flex items-center justify-center shadow-lg z-20 text-white ${
+                        product.stockStatus === 'instock' ? 'bg-gray-900' : 'bg-gray-400 cursor-not-allowed'
+                      }`}
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                      </svg>
+                    </button>
                   </div>
 
                   {/* Info */}
@@ -157,13 +172,13 @@ export default function StackBuilder({ category }: StackBuilderProps) {
                     {product.stockStatus === 'instock' ? (
                       <button
                         onClick={() => addToStack(product)}
-                        className="w-full bg-gray-900 text-white font-semibold py-3 text-base rounded-full hover:bg-gray-800 transition-colors"
+                        className="hidden md:block w-full bg-gray-900 text-white font-semibold py-3 text-base rounded-full hover:bg-gray-800 transition-colors"
                       >
                         {t('stack.add_button')}
                       </button>
                     ) : (
                       <button
-                        className="w-full bg-gray-600 text-white font-semibold py-3 text-base rounded-full cursor-not-allowed"
+                        className="hidden md:block w-full bg-gray-600 text-white font-semibold py-3 text-base rounded-full cursor-not-allowed"
                         disabled
                       >
                         {t('stack.sold_out')}
