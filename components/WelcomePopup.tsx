@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { CheckCircle } from 'lucide-react';
 
 const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfAhFwhiEQNOQqhKMYYsFfmi2eeh0nahSx1LDW9gR-dY8WbjA/formResponse';
 const FORM_FIELD_IDS = {
@@ -91,10 +92,15 @@ const countries: Country[] = [
 ];
 
 export default function WelcomePopup() {
-  const { t, language, setLanguage } = useLanguage();
+  const { language, setLanguage, t } = useLanguage();
+  const brandName = process.env.NEXT_PUBLIC_SITE_NAME?.includes('Maxa') ? 'Maxa' : 'Peptive';
+
+  const [step, setStep] = useState<'disclaimer' | 'form' | null>(null);
+  const [isDisclaimerChecked, setIsDisclaimerChecked] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  
   const [name, setName] = useState('');
-  const [countryCode, setCountryCode] = useState('');
+  const [countryCode, setCountryCode] = useState(countries[0].dial);
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [nameError, setNameError] = useState('');
@@ -104,18 +110,37 @@ export default function WelcomePopup() {
 
   // Show popup after delay
   useEffect(() => {
-    const hasCompleted = localStorage.getItem(STORAGE_KEY);
-    if (hasCompleted === 'true') {
-      return;
-    }
+    const isDisclaimerAccepted = localStorage.getItem('disclaimerAccepted') === 'true';
+    const isFormCompleted = localStorage.getItem(STORAGE_KEY) === 'true';
 
     const timer = setTimeout(() => {
-      setIsOpen(true);
-      document.body.style.overflow = 'hidden';
+      if (!isDisclaimerAccepted) {
+        setStep('disclaimer');
+        setIsOpen(true);
+        document.body.style.overflow = 'hidden';
+      } else if (!isFormCompleted) {
+        setStep('form');
+        setIsOpen(true);
+        document.body.style.overflow = 'hidden';
+      }
     }, DISPLAY_DELAY);
 
     return () => clearTimeout(timer);
   }, []);
+
+  const handleAcceptDisclaimer = () => {
+    localStorage.setItem('disclaimerAccepted', 'true');
+    const isFormCompleted = localStorage.getItem(STORAGE_KEY) === 'true';
+    if (!isFormCompleted) {
+      setStep('form');
+    } else {
+      handleClose();
+    }
+  };
+
+  const handleLeaveSite = () => {
+    window.location.href = 'https://google.com';
+  };
 
   const isValidPhone = (phone: string) => {
     const cleaned = phone.replace(/\D/g, '');
@@ -144,20 +169,17 @@ export default function WelcomePopup() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Clear previous errors
     setNameError('');
     setPhoneError('');
     setEmailError('');
 
     let hasError = false;
 
-    // Validate name
     if (!name.trim()) {
       setNameError(t('welcome_popup.name_error'));
       hasError = true;
     }
 
-    // Validate phone
     if (!phone.trim()) {
       setPhoneError(t('welcome_popup.phone_error'));
       hasError = true;
@@ -166,7 +188,6 @@ export default function WelcomePopup() {
       hasError = true;
     }
 
-    // Validate email
     if (!email.trim()) {
       setEmailError(t('welcome_popup.email_error'));
       hasError = true;
@@ -193,17 +214,14 @@ export default function WelcomePopup() {
 
       await submitToGoogleForms(formData);
 
-      // Save to localStorage
       localStorage.setItem(STORAGE_KEY, 'true');
       localStorage.setItem('visitorName', name);
       localStorage.setItem('visitorPhone', fullPhone);
       localStorage.setItem('visitorEmail', email);
 
-      // Close popup
       handleClose();
     } catch (error) {
       console.warn('Submission error:', error);
-      // Close anyway
       handleClose();
     } finally {
       setIsSubmitting(false);
@@ -227,7 +245,6 @@ export default function WelcomePopup() {
       }`}
     >
       <div className={`relative bg-white rounded-2xl shadow-2xl max-w-[480px] w-[90%] p-10 sm:p-12 text-center ${isRTL ? 'rtl' : ''}`}>
-        {/* Close Button */}
         <button
           onClick={handleClose}
           className={`absolute top-4 ${isRTL ? 'left-4' : 'right-4'} text-3xl text-gray-500 hover:text-black transition-colors z-10`}
@@ -235,7 +252,6 @@ export default function WelcomePopup() {
           &times;
         </button>
 
-        {/* Language Toggle */}
         <div className={`absolute top-4 ${isRTL ? 'right-4' : 'left-4'} flex gap-1 bg-gray-100 rounded-lg p-1`}>
           <button
             onClick={() => setLanguage('en')}
@@ -255,104 +271,181 @@ export default function WelcomePopup() {
           </button>
         </div>
 
-        {/* Title */}
-        <h2 className="text-3xl font-bold text-black mt-10 mb-3 leading-snug">
-          {t('welcome_popup.title')}{' '}
-          <span className="inline-block ml-2 align-middle">
-            🎉
-            <img
-              src="https://cdn.shopify.com/s/files/1/0772/8748/9774/files/Screenshot_2025-11-19_at_17.57.08.png?v=1763557038"
-              alt="WhatsApp"
-              width={40}
-              height={40}
-              className="inline-block align-top"
-            />
-          </span>
-        </h2>
-
-        <p className="text-gray-600 mb-9">{t('welcome_popup.subtitle')}</p>
-
-        {/* Form */}
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          {/* Name Input */}
-          <div>
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => {
-                setName(e.target.value);
-                setNameError('');
-              }}
-              placeholder={t('welcome_popup.name_placeholder')}
-              className={`w-full px-4 py-4 border-2 rounded-xl text-base transition-all bg-gray-50 focus:outline-none focus:border-black focus:bg-white ${
-                nameError ? 'border-red-500 bg-red-50' : 'border-gray-200'
-              }`}
-            />
-            {nameError && <div className={`text-red-500 text-sm mt-2 ${isRTL ? 'text-right' : 'text-left'}`}>{nameError}</div>}
-          </div>
-
-          {/* Phone Input Group */}
-          <div>
-            <div className={`flex gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
-              <div className="min-w-[75px]">
-                <select
-                  value={countryCode}
-                  onChange={(e) => setCountryCode(e.target.value)}
-                  className={`w-auto border-2 rounded-xl text-base bg-gray-50 cursor-pointer font-medium px-4 py-4 text-center transition-all focus:outline-none focus:border-black focus:bg-white ${
-                    phoneError ? 'border-red-500 bg-red-50' : 'border-gray-200'
-                  }`}
-                >
-                  {countries.map((country) => (
-                    <option key={country.code} value={country.dial}>
-                      {country.flag} {country.dial}
-                    </option>
-                  ))}
-                </select>
+        {step === 'disclaimer' && (
+          <div className={`text-${isRTL ? 'right' : 'left'}`}>
+            <div className={`flex items-center gap-2 mb-6 ${isRTL ? 'flex-row-reverse' : ''}`}>
+              <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-600">
+                <CheckCircle className="w-5 h-5" />
               </div>
-              <div className="flex-1">
-                <input
-                  type="tel"
-                  value={phone}
-                  onChange={(e) => {
-                    setPhone(e.target.value);
-                    setPhoneError('');
-                  }}
-                  placeholder={t('welcome_popup.phone_placeholder')}
-                  className={`w-full px-4 py-4 border-2 rounded-xl text-base transition-all bg-gray-50 focus:outline-none focus:border-black focus:bg-white ${
-                    phoneError ? 'border-red-500 bg-red-50' : 'border-gray-200'
-                  }`}
+              <span className="text-sm font-bold tracking-widest text-blue-600 uppercase">
+                {t('disclaimer_popup.notice')}
+              </span>
+            </div>
+
+            <h2 className={`text-3xl sm:text-4xl font-bold text-gray-900 mb-6 ${isRTL ? 'text-right' : 'text-left'}`}>
+              {t('disclaimer_popup.title')}
+            </h2>
+
+            <p className="text-gray-700 text-lg mb-6 leading-relaxed">
+              {t('disclaimer_popup.desc').replace('{brand}', brandName)}
+            </p>
+
+            <ul className="space-y-4 mb-8 text-gray-700 text-base">
+              <li className={`flex gap-3 items-start ${isRTL ? 'flex-row-reverse' : ''}`}>
+                <span className="text-blue-500 mt-1.5 text-xs">●</span>
+                <span>
+                  <strong>{t('disclaimer_popup.li1_strong')}</strong>
+                  {t('disclaimer_popup.li1')}
+                </span>
+              </li>
+              <li className={`flex gap-3 items-start ${isRTL ? 'flex-row-reverse' : ''}`}>
+                <span className="text-blue-500 mt-1.5 text-xs">●</span>
+                <span>
+                  <strong>{t('disclaimer_popup.li2_strong')}</strong>
+                  {t('disclaimer_popup.li2')}
+                </span>
+              </li>
+              <li className={`flex gap-3 items-start ${isRTL ? 'flex-row-reverse' : ''}`}>
+                <span className="text-blue-500 mt-1.5 text-xs">●</span>
+                <span>
+                  {t('disclaimer_popup.li3')}
+                </span>
+              </li>
+            </ul>
+
+            <label className={`flex items-start gap-4 p-4 border rounded-xl cursor-pointer hover:bg-gray-50 transition-colors ${isDisclaimerChecked ? 'border-blue-500 bg-blue-50/30' : 'border-gray-200'} ${isRTL ? 'flex-row-reverse text-right' : ''}`}>
+              <div className="pt-1">
+                <div className={`w-5 h-5 border-2 rounded flex items-center justify-center transition-colors ${isDisclaimerChecked ? 'border-blue-600 bg-blue-600 text-white' : 'border-gray-300'}`}>
+                  {isDisclaimerChecked && <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>}
+                </div>
+                <input 
+                  type="checkbox" 
+                  className="sr-only" 
+                  checked={isDisclaimerChecked} 
+                  onChange={(e) => setIsDisclaimerChecked(e.target.checked)} 
                 />
               </div>
+              <span className="text-sm text-gray-700 leading-relaxed">
+                {t('disclaimer_popup.checkbox_pre')}
+                <strong>{t('disclaimer_popup.checkbox_strong')}</strong>
+                {t('disclaimer_popup.checkbox_post')}
+              </span>
+            </label>
+
+            <div className={`mt-8 flex items-center gap-4 ${isRTL ? 'flex-row-reverse' : ''}`}>
+              <button
+                onClick={handleAcceptDisclaimer}
+                disabled={!isDisclaimerChecked}
+                className="flex-1 bg-gray-400 text-white py-3 px-6 rounded-full font-bold tracking-widest uppercase transition-all disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-900"
+              >
+                {t('disclaimer_popup.understand')}
+              </button>
+              <button
+                onClick={handleLeaveSite}
+                className="text-gray-600 font-medium hover:text-gray-900 px-4"
+              >
+                {t('disclaimer_popup.leave')}
+              </button>
             </div>
-            {phoneError && <div className={`text-red-500 text-sm mt-2 ${isRTL ? 'text-right' : 'text-left'}`}>{phoneError}</div>}
           </div>
+        )}
 
-          {/* Email Input */}
-          <div>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-                setEmailError('');
-              }}
-              placeholder={t('welcome_popup.email_placeholder')}
-              className={`w-full px-4 py-4 border-2 rounded-xl text-base transition-all bg-gray-50 focus:outline-none focus:border-black focus:bg-white ${
-                emailError ? 'border-red-500 bg-red-50' : 'border-gray-200'
-              }`}
-            />
-            {emailError && <div className={`text-red-500 text-sm mt-2 ${isRTL ? 'text-right' : 'text-left'}`}>{emailError}</div>}
-          </div>
+        {step === 'form' && (
+          <>
+            <h2 className="text-3xl font-bold text-black mt-10 mb-3 leading-snug">
+              {t('welcome_popup.title')}{' '}
+              <span className="inline-block ml-2 align-middle">
+                🎉
+                <img
+                  src="https://cdn.shopify.com/s/files/1/0772/8748/9774/files/Screenshot_2025-11-19_at_17.57.08.png?v=1763557038"
+                  alt="WhatsApp"
+                  width={40}
+                  height={40}
+                  className="inline-block align-top"
+                />
+              </span>
+            </h2>
 
-          {/* Submit Button */}
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="w-full px-6 py-4 bg-black text-white rounded-xl text-base font-semibold cursor-pointer transition-all mt-3 hover:bg-gray-900 hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0 disabled:bg-gray-400 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none"
-          >
-            {isSubmitting ? t('welcome_popup.please_wait') : t('welcome_popup.submit_button')}
-          </button>
-        </form>
+            <p className="text-gray-600 mb-9">{t('welcome_popup.subtitle')}</p>
+
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+              <div>
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => {
+                    setName(e.target.value);
+                    setNameError('');
+                  }}
+                  placeholder={t('welcome_popup.name_placeholder')}
+                  className={`w-full px-4 py-4 border-2 rounded-xl text-base transition-all bg-gray-50 focus:outline-none focus:border-black focus:bg-white ${
+                    nameError ? 'border-red-500 bg-red-50' : 'border-gray-200'
+                  }`}
+                />
+                {nameError && <div className={`text-red-500 text-sm mt-2 ${isRTL ? 'text-right' : 'text-left'}`}>{nameError}</div>}
+              </div>
+
+              <div>
+                <div className={`flex gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                  <div className="min-w-[75px]">
+                    <select
+                      value={countryCode}
+                      onChange={(e) => setCountryCode(e.target.value)}
+                      className={`w-auto border-2 rounded-xl text-base bg-gray-50 cursor-pointer font-medium px-4 py-4 text-center transition-all focus:outline-none focus:border-black focus:bg-white ${
+                        phoneError ? 'border-red-500 bg-red-50' : 'border-gray-200'
+                      }`}
+                    >
+                      {countries.map((country) => (
+                        <option key={country.code} value={country.dial}>
+                          {country.flag} {country.dial}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="flex-1">
+                    <input
+                      type="tel"
+                      value={phone}
+                      onChange={(e) => {
+                        setPhone(e.target.value);
+                        setPhoneError('');
+                      }}
+                      placeholder={t('welcome_popup.phone_placeholder')}
+                      className={`w-full px-4 py-4 border-2 rounded-xl text-base transition-all bg-gray-50 focus:outline-none focus:border-black focus:bg-white ${
+                        phoneError ? 'border-red-500 bg-red-50' : 'border-gray-200'
+                      }`}
+                    />
+                  </div>
+                </div>
+                {phoneError && <div className={`text-red-500 text-sm mt-2 ${isRTL ? 'text-right' : 'text-left'}`}>{phoneError}</div>}
+              </div>
+
+              <div>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    setEmailError('');
+                  }}
+                  placeholder={t('welcome_popup.email_placeholder')}
+                  className={`w-full px-4 py-4 border-2 rounded-xl text-base transition-all bg-gray-50 focus:outline-none focus:border-black focus:bg-white ${
+                    emailError ? 'border-red-500 bg-red-50' : 'border-gray-200'
+                  }`}
+                />
+                {emailError && <div className={`text-red-500 text-sm mt-2 ${isRTL ? 'text-right' : 'text-left'}`}>{emailError}</div>}
+              </div>
+
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full px-6 py-4 bg-black text-white rounded-xl text-base font-semibold cursor-pointer transition-all mt-3 hover:bg-gray-900 hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0 disabled:bg-gray-400 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none"
+              >
+                {isSubmitting ? t('welcome_popup.please_wait') : t('welcome_popup.submit_button')}
+              </button>
+            </form>
+          </>
+        )}
       </div>
     </div>
   );

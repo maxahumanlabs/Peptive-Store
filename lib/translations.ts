@@ -1,5 +1,20 @@
 export const translations = {
   en: {
+    disclaimer_popup: {
+      notice: "RESEARCH-USE NOTICE",
+      title: "Before you enter",
+      desc: "{brand} products are research compounds. Please read and confirm the following:",
+      li1_strong: "For laboratory research use only",
+      li1: " — not a drug, supplement, food, or cosmetic.",
+      li2_strong: "Not for human or animal consumption,",
+      li2: " nor for diagnostic or therapeutic use.",
+      li3: "Handle with appropriate PPE; store and reconstitute strictly per protocol.",
+      checkbox_pre: "I confirm I am ",
+      checkbox_strong: "18 or older",
+      checkbox_post: " and a qualified researcher purchasing strictly for laboratory research.",
+      understand: "I UNDERSTAND — ENTER",
+      leave: "Leave"
+    },
     announcement_bar: "GET 10% OFF Code: \"PEP10\"",
     announcement: {
       offer: "GET 10% OFF Code: \"PEP10\"",
@@ -331,6 +346,21 @@ export const translations = {
   },
   ar: {
     announcement_bar: "أهلاً بكم في مستقبل علم الأحياء",
+    disclaimer_popup: {
+      notice: "ملاحظة استخدام للأبحاث",
+      title: "قبل الدخول",
+      desc: "منتجات {brand} هي مركبات بحثية. يرجى قراءة وتأكيد ما يلي:",
+      li1_strong: "للاستخدام في الأبحاث المخبرية فقط",
+      li1: " — وليس دواء، مكمل غذائي، غذاء، أو مستحضر تجميل.",
+      li2_strong: "غير مخصص للاستهلاك البشري أو الحيواني،",
+      li2: " ولا للاستخدام التشخيصي أو العلاجي.",
+      li3: "يجب التعامل معه بمعدات الوقاية الشخصية المناسبة؛ والتخزين والتحضير بدقة وفقًا للبروتوكول.",
+      checkbox_pre: "أؤكد أن عمري ",
+      checkbox_strong: "18 عاماً أو أكثر",
+      checkbox_post: " وأني باحث مؤهل أشتري خصيصاً للأبحاث المخبرية.",
+      understand: "أفهم ذلك — الدخول",
+      leave: "مغادرة"
+    },
     announcement: {
       offer: "احصل على خصم 10% بالكود: \"PEP10\"",
       uae: "شحن مجاني في اليوم التالي لكل الطلبات داخل الإمارات",
