@@ -11,6 +11,7 @@ export default function ProductsPage({ params }: { params: { collection: string 
   const { t } = useLanguage();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+  const [sortBy, setSortBy] = useState<string>('menu_order');
 
   let CATEGORY = params.collection;
   if (CATEGORY === 'oral-peptide-supplements') {
@@ -22,7 +23,13 @@ export default function ProductsPage({ params }: { params: { collection: string 
       try {
         const { woocommerce } = await import('@/lib/woocommerce');
         // Load every product in the category (Store API caps per_page at 100)
-        const data = await woocommerce.getProducts({ category: CATEGORY, perPage: 100 });
+        // Sort by menu_order (WordPress catalog order) by default to let WP Admin drag-and-drop work.
+        const data = await woocommerce.getProducts({
+          category: CATEGORY,
+          perPage: 100,
+          orderby: 'menu_order',
+          order: 'asc'
+        });
         setProducts(data);
       } catch (error) {
         console.error('Error fetching products:', error);
@@ -31,7 +38,26 @@ export default function ProductsPage({ params }: { params: { collection: string 
       }
     }
     loadProducts();
-  }, []);
+  }, [CATEGORY]);
+
+  const sortedProducts = [...products].sort((a, b) => {
+    if (sortBy === 'price-asc') {
+      return parseFloat(a.price) - parseFloat(b.price);
+    }
+    if (sortBy === 'price-desc') {
+      return parseFloat(b.price) - parseFloat(a.price);
+    }
+    if (sortBy === 'latest') {
+      return b.id - a.id;
+    }
+    if (sortBy === 'oldest') {
+      return a.id - b.id;
+    }
+    if (sortBy === 'rating') {
+      return b.rating - a.rating;
+    }
+    return 0; // Default: 'menu_order' (keeps WooCommerce catalog order)
+  });
 
   return (
     <div>
@@ -70,12 +96,32 @@ export default function ProductsPage({ params }: { params: { collection: string 
           </div>
         ) : products.length > 0 ? (
           <>
-            <ProductGrid products={products} collectionSlug={params.collection} />
-
-            {/* Results Count */}
-            <div className="mt-12 text-center text-gray-600">
-              {t('products.showing')} {products.length} {products.length === 1 ? t('products.product') : t('products.products')}
+            {/* Sorting Dropdown & Showing count */}
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+              <div className="text-gray-400 text-sm">
+                {t('products.showing')} {sortedProducts.length} {sortedProducts.length === 1 ? t('products.product') : t('products.products')}
+              </div>
+              <div className="flex items-center gap-2 w-full sm:w-auto">
+                <label htmlFor="sort-select" className="text-sm font-medium text-gray-300 shrink-0">
+                  {t('products.sort_by')}:
+                </label>
+                <select
+                  id="sort-select"
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                  className="bg-zinc-950 text-white text-sm rounded-lg border border-zinc-800 focus:ring-1 focus:ring-white focus:border-white block w-full sm:w-48 p-2.5 outline-none transition-colors cursor-pointer"
+                >
+                  <option value="menu_order">{t('products.sort_recommended')}</option>
+                  <option value="price-asc">{t('products.sort_price_asc')}</option>
+                  <option value="price-desc">{t('products.sort_price_desc')}</option>
+                  <option value="latest">{t('products.sort_latest')}</option>
+                  <option value="oldest">{t('products.sort_oldest')}</option>
+                  <option value="rating">{t('products.sort_rating')}</option>
+                </select>
+              </div>
             </div>
+
+            <ProductGrid products={sortedProducts} collectionSlug={params.collection} />
           </>
         ) : (
           <div className="text-center py-16">

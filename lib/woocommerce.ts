@@ -188,6 +188,8 @@ class WooCommerceAPI {
     featured?: boolean;
     onSale?: boolean;
     search?: string;
+    orderby?: string;
+    order?: string;
   }): Promise<Product[]> {
     try {
       // Use Store API instead of REST API v3.
@@ -200,6 +202,8 @@ class WooCommerceAPI {
           featured: params?.featured,
           on_sale: params?.onSale,
           search: params?.search,
+          ...(params?.orderby ? { orderby: params.orderby } : {}),
+          ...(params?.order ? { order: params.order } : {}),
         },
       });
 

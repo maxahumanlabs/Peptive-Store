@@ -153,7 +153,14 @@ export const translations = {
       products: "products",
       no_products_title: "No Products Found",
       no_products_message: "Check back soon for new products.",
-      show_more: "Show more"
+      show_more: "Show more",
+      sort_by: "Sort by",
+      sort_recommended: "Recommended",
+      sort_price_asc: "Price: Low to High",
+      sort_price_desc: "Price: High to Low",
+      sort_latest: "Newest",
+      sort_oldest: "Oldest",
+      sort_rating: "Top Rated"
     },
     oral_peptides: {
       title: "Oral Peptides Supplements",
@@ -501,7 +508,14 @@ export const translations = {
       products: "منتجات",
       no_products_title: "لم يتم العثور على منتجات",
       no_products_message: "تحقق مرة أخرى قريبًا للمنتجات الجديدة.",
-      show_more: "عرض المزيد"
+      show_more: "عرض المزيد",
+      sort_by: "ترتيب حسب",
+      sort_recommended: "الموصى به",
+      sort_price_asc: "السعر: من الأقل للأعلى",
+      sort_price_desc: "السعر: من الأعلى للأقل",
+      sort_latest: "الأحدث",
+      sort_oldest: "الأقدم",
+      sort_rating: "الأعلى تقييماً"
     },
     oral_peptides: {
       title: "مكملات الببتيدات الفموية",
