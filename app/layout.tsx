@@ -50,6 +50,7 @@ export default function RootLayout({
           <Footer />
           <CartSidebar />
           <WhatsAppButton />
+          <WelcomePopup />
         </div>
         </LanguageProvider>
       </body>
