@@ -324,7 +324,7 @@ export default function WelcomePopup() {
                 onClick={handleAcceptDisclaimer}
                 disabled={!isDisclaimerChecked}
                 className={`flex-1 w-full text-white py-3 px-6 rounded-full font-bold tracking-widest uppercase transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-400 ${
-                  isDisclaimerChecked ? 'bg-[#0b182b] opacity-90 hover:opacity-100' : 'bg-gray-400'
+                  isDisclaimerChecked ? 'bg-[#d4af37] opacity-90 hover:opacity-100' : 'bg-gray-400'
                 }`}
               >
                 {t('disclaimer_popup.understand')}
