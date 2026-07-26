@@ -311,6 +311,13 @@ export default function WelcomePopup() {
                   {t('disclaimer_popup.li3')}
                 </span>
               </li>
+              <li className={`flex gap-3 items-start ${isRTL ? 'flex-row-reverse' : ''}`}>
+                <span className="text-blue-500 mt-1.5 text-xs">●</span>
+                <span>
+                  <strong>{t('disclaimer_popup.li4_strong')}</strong>
+                  {t('disclaimer_popup.li4')}
+                </span>
+              </li>
             </ul>
 
             <label className={`flex items-start gap-4 p-4 border rounded-xl cursor-pointer hover:bg-gray-50 transition-colors ${isDisclaimerChecked ? 'border-blue-500 bg-blue-50/30' : 'border-gray-200'} ${isRTL ? 'flex-row-reverse text-right' : ''}`}>
