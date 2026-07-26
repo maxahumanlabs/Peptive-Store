@@ -93,7 +93,7 @@ const countries: Country[] = [
 
 export default function WelcomePopup() {
   const { language, setLanguage, t } = useLanguage();
-  const brandName = process.env.NEXT_PUBLIC_SITE_NAME?.includes('Maxa') ? 'Maxa' : 'Peptive';
+  const brandName = 'Peptive';
 
   const [step, setStep] = useState<'disclaimer' | 'form' | null>(null);
   const [isDisclaimerChecked, setIsDisclaimerChecked] = useState(false);
@@ -245,12 +245,7 @@ export default function WelcomePopup() {
       }`}
     >
       <div className={`relative bg-white rounded-2xl shadow-2xl max-w-[480px] w-[90%] p-10 sm:p-12 text-center ${isRTL ? 'rtl' : ''}`}>
-        <button
-          onClick={handleClose}
-          className="absolute top-4 end-4 text-3xl text-gray-500 hover:text-black transition-colors z-10"
-        >
-          &times;
-        </button>
+        
 
         <div className="absolute top-4 start-4 flex items-center gap-1 bg-gray-100 rounded-lg p-1 w-max">
           <button
@@ -344,7 +339,7 @@ export default function WelcomePopup() {
                 onClick={handleAcceptDisclaimer}
                 disabled={!isDisclaimerChecked}
                 className={`flex-1 text-white py-3 px-6 rounded-full font-bold tracking-widest uppercase transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-400 ${
-                  isDisclaimerChecked ? `${brandName === 'Maxa' ? 'bg-[#0b182b]' : 'bg-[#d4af37]'} opacity-90 hover:opacity-100` : 'bg-gray-400'
+                  isDisclaimerChecked ? `bg-[#d4af37] opacity-90 hover:opacity-100` : 'bg-gray-400'
                 }`}
               >
                 {t('disclaimer_popup.understand')}
@@ -448,7 +443,7 @@ export default function WelcomePopup() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full px-6 py-4 bg-black text-white rounded-xl text-base font-semibold cursor-pointer transition-all mt-3 hover:bg-gray-900 hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0 disabled:bg-gray-400 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none"
+                className="w-full px-6 py-4 bg-[#d4af37] text-white rounded-xl text-base font-semibold cursor-pointer transition-all mt-3 hover:opacity-90 hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0 disabled:bg-gray-400 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none"
               >
                 {isSubmitting ? t('welcome_popup.please_wait') : t('welcome_popup.submit_button')}
               </button>
