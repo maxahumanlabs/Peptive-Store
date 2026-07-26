@@ -252,10 +252,10 @@ export default function WelcomePopup() {
           &times;
         </button>
 
-        <div className={`absolute top-4 ${isRTL ? 'right-4' : 'left-4'} flex gap-1 bg-gray-100 rounded-lg p-1`}>
+        <div className={`absolute top-4 ${isRTL ? 'right-4' : 'left-4'} flex items-center gap-1 bg-gray-100 rounded-lg p-1 w-max`}>
           <button
             onClick={() => setLanguage('en')}
-            className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all ${
+            className={`px-3 py-1.5 rounded-md text-sm font-medium whitespace-nowrap transition-all ${
               language === 'en' ? 'bg-black text-white' : 'bg-transparent text-gray-600 hover:bg-gray-200'
             }`}
           >
@@ -263,7 +263,7 @@ export default function WelcomePopup() {
           </button>
           <button
             onClick={() => setLanguage('ar')}
-            className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all ${
+            className={`px-3 py-1.5 rounded-md text-sm font-medium whitespace-nowrap transition-all ${
               language === 'ar' ? 'bg-black text-white' : 'bg-transparent text-gray-600 hover:bg-gray-200'
             }`}
           >
@@ -272,7 +272,7 @@ export default function WelcomePopup() {
         </div>
 
         {step === 'disclaimer' && (
-          <div className={`text-${isRTL ? 'right' : 'left'}`}>
+          <div className={`mt-10 sm:mt-8 text-${isRTL ? 'right' : 'left'}`}>
             <div className={`flex items-center gap-2 mb-6 ${isRTL ? 'flex-row-reverse' : ''}`}>
               <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-600">
                 <CheckCircleIcon className="w-5 h-5" />
