@@ -343,7 +343,9 @@ export default function WelcomePopup() {
               <button
                 onClick={handleAcceptDisclaimer}
                 disabled={!isDisclaimerChecked}
-                className="flex-1 bg-gray-400 text-white py-3 px-6 rounded-full font-bold tracking-widest uppercase transition-all disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-900"
+                className={`flex-1 text-white py-3 px-6 rounded-full font-bold tracking-widest uppercase transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-400 ${
+                  isDisclaimerChecked ? `${brandName === 'Maxa' ? 'bg-[#0b182b]' : 'bg-[#d4af37]'} opacity-90 hover:opacity-100` : 'bg-gray-400'
+                }`}
               >
                 {t('disclaimer_popup.understand')}
               </button>
