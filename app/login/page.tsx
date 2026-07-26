@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
+import { useLocalizedRouter as useRouter } from '@/hooks/useLocalizedRouter';
+import Link from '@/components/ui/LocalizedLink';
 import { authAPI } from '@/lib/auth';
 
 export default function LoginPage() {

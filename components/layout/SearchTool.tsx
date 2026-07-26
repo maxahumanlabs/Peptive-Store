@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import Link from 'next/link';
+import Link from '@/components/ui/LocalizedLink';
 import Image from 'next/image';
 import { useLanguage } from '@/contexts/LanguageContext';
 import axios from 'axios';

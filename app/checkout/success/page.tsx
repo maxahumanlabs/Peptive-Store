@@ -1,8 +1,9 @@
 'use client';
 
 import { useEffect, useState, Suspense } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import Link from 'next/link';
+import { useLocalizedRouter as useRouter } from '@/hooks/useLocalizedRouter';
+import { useSearchParams } from 'next/navigation';
+import Link from '@/components/ui/LocalizedLink';
 import { useCartStore } from '@/store/cartStore';
 
 function SuccessContent() {

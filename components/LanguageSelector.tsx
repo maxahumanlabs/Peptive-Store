@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const languages = [
@@ -8,11 +9,11 @@ const languages = [
   { code: 'ar' as const, label: 'العربية' },
 ];
 
-
-
 export default function LanguageSelector() {
   const { language, setLanguage } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
   let closeTimeout: NodeJS.Timeout | null = null;
 
   const handleMouseEnter = () => {
@@ -31,6 +32,14 @@ export default function LanguageSelector() {
   const handleLanguageChange = (langCode: 'en' | 'ar') => {
     setLanguage(langCode);
     setIsOpen(false);
+
+    if (pathname) {
+      if (langCode === 'ar' && !pathname.startsWith('/ar')) {
+        router.push(`/ar${pathname}`);
+      } else if (langCode === 'en' && pathname.startsWith('/ar')) {
+        router.push(pathname.replace(/^\/ar/, '') || '/');
+      }
+    }
   };
 
   const currentLangLabel = languages.find(l => l.code === language)?.label || 'English';

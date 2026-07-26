@@ -1,6 +1,6 @@
 'use client';
 
-import Link from 'next/link';
+import Link from '@/components/ui/LocalizedLink';
 import { useRef } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import ProductCard from '@/components/products/ProductCard';

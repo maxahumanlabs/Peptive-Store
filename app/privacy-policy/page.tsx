@@ -1,6 +1,6 @@
 "use client";
 
-import Link from 'next/link';
+import Link from '@/components/ui/LocalizedLink';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function PrivacyPolicyPage() {

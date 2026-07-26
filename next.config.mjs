@@ -18,6 +18,8 @@ const nextConfig = {
   },
   async rewrites() {
     return [
+      { source: '/ar/:path*', destination: '/:path*' },
+      { source: '/ar', destination: '/' },
       // Canonical category URLs — used in ads and menu links
       { source: '/collections/all', destination: '/collections/all/products' },
       { source: '/collections/oral-peptide-supplements', destination: '/oral-peptides' },

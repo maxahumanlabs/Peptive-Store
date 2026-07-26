@@ -1,6 +1,6 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { useLocalizedRouter as useRouter } from '@/hooks/useLocalizedRouter';
 import { Product } from '@/types';
 import { decodeHtmlEntities } from '@/lib/utils';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -57,7 +57,7 @@ export default function ProductCard({ product, collectionSlug = 'all' }: Product
   // (so the quick-add buttons keep their own behaviour).
   const handleCardClick = (e: React.MouseEvent) => {
     if (!(e.target as HTMLElement).closest('button')) {
-      router.push(`/collections/${collectionSlug}/products/${product.slug}`);
+            router.push(`/collections/${collectionSlug}/products/${product.slug}`);
     }
   };
 

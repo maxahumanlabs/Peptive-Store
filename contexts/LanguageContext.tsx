@@ -1,6 +1,7 @@
 'use client';
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { usePathname } from 'next/navigation';
 import { translations } from '@/lib/translations';
 
 type Language = 'en' | 'ar';
@@ -16,15 +17,20 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguageState] = useState<Language>('en');
   const [mounted, setMounted] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
-    // Load language from localStorage on mount
-    const savedLang = localStorage.getItem('language') as Language;
-    if (savedLang && (savedLang === 'en' || savedLang === 'ar')) {
-      setLanguageState(savedLang);
+    // If pathname starts with /ar, override localStorage
+    if (pathname && (pathname === '/ar' || pathname.startsWith('/ar/'))) {
+      setLanguageState('ar');
+    } else {
+      const savedLang = localStorage.getItem('language') as Language;
+      if (savedLang && (savedLang === 'en' || savedLang === 'ar')) {
+        setLanguageState(savedLang);
+      }
     }
     setMounted(true);
-  }, []);
+  }, [pathname]);
 
   useEffect(() => {
     if (mounted) {
