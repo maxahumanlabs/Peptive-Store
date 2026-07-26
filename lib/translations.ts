@@ -3,7 +3,7 @@ export const translations = {
     disclaimer_popup: {
       notice: "RESEARCH-USE NOTICE",
       title: "Before you enter",
-      desc: "{brand} products are research compounds. Please read and confirm the following:",
+      desc: "Before you enter, all products are research compounds. Please read and confirm for laboratory research use only.",
       li1_strong: "For laboratory research use only",
       li1: " — not a drug, supplement, food, or cosmetic.",
       li2_strong: "Not for human or animal consumption,",
@@ -11,10 +11,11 @@ export const translations = {
       li3: "Handle with appropriate PPE; store and reconstitute strictly per protocol.",
       li4_strong: "No medical claims are made.",
       li4: " All sales are final — no refunds or exchanges.",
-      checkbox_pre: "I confirm I am ",
-      checkbox_strong: "18 or older",
-      checkbox_post: " and a qualified researcher purchasing strictly for laboratory research.",
-      understand: "I UNDERSTAND — ENTER",
+      checkbox_pre: "I confirm that I am ",
+      checkbox_strong: "21 or older",
+      checkbox_post: ", a qualified researcher, and I agree to the Terms of Service.",
+      understand: "I CONFIRM",
+      terms_note: "You agree to our Terms of Service.",
       leave: "Leave"
     },
     announcement_bar: "GET 10% OFF Code: \"PEP10\"",
@@ -351,7 +352,7 @@ export const translations = {
     disclaimer_popup: {
       notice: "ملاحظة استخدام للأبحاث",
       title: "قبل الدخول",
-      desc: "منتجات {brand} هي مركبات بحثية. يرجى قراءة وتأكيد ما يلي:",
+      desc: "قبل الدخول، جميع المنتجات هي مركبات بحثية. يرجى القراءة والتأكيد على أنها للاستخدام في الأبحاث المخبرية فقط.",
       li1_strong: "للاستخدام في الأبحاث المخبرية فقط",
       li1: " — وليس دواء، مكمل غذائي، غذاء، أو مستحضر تجميل.",
       li2_strong: "غير مخصص للاستهلاك البشري أو الحيواني،",
@@ -360,9 +361,10 @@ export const translations = {
       li4_strong: "لا نقدم أي ادعاءات طبية.",
       li4: " جميع المبيعات نهائية — لا توجد استردادات أو استبدالات.",
       checkbox_pre: "أؤكد أن عمري ",
-      checkbox_strong: "18 عاماً أو أكثر",
-      checkbox_post: " وأني باحث مؤهل أشتري خصيصاً للأبحاث المخبرية.",
-      understand: "أفهم ذلك — الدخول",
+      checkbox_strong: "21 عاماً أو أكثر",
+      checkbox_post: "، وأني باحث مؤهل، وأوافق على شروط الخدمة.",
+      understand: "أؤكد",
+      terms_note: "أنت توافق على شروط الخدمة الخاصة بنا.",
       leave: "مغادرة"
     },
     announcement: {

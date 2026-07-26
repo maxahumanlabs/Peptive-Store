@@ -298,35 +298,7 @@ export default function WelcomePopup() {
               {t('disclaimer_popup.desc').replace('{brand}', brandName)}
             </p>
 
-            <ul className="space-y-4 mb-8 text-gray-700 text-base max-h-[160px] overflow-y-auto pr-2 custom-scrollbar">
-              <li className="flex gap-3 items-start">
-                <span className="text-blue-500 mt-1.5 text-xs">●</span>
-                <span>
-                  <strong>{t('disclaimer_popup.li1_strong')}</strong>
-                  {t('disclaimer_popup.li1')}
-                </span>
-              </li>
-              <li className="flex gap-3 items-start">
-                <span className="text-blue-500 mt-1.5 text-xs">●</span>
-                <span>
-                  <strong>{t('disclaimer_popup.li2_strong')}</strong>
-                  {t('disclaimer_popup.li2')}
-                </span>
-              </li>
-              <li className="flex gap-3 items-start">
-                <span className="text-blue-500 mt-1.5 text-xs">●</span>
-                <span>
-                  {t('disclaimer_popup.li3')}
-                </span>
-              </li>
-              <li className="flex gap-3 items-start">
-                <span className="text-blue-500 mt-1.5 text-xs">●</span>
-                <span>
-                  <strong>{t('disclaimer_popup.li4_strong')}</strong>
-                  {t('disclaimer_popup.li4')}
-                </span>
-              </li>
-            </ul>
+            
 
             <label className={`flex items-start gap-4 p-4 border rounded-xl cursor-pointer hover:bg-gray-50 transition-colors ${isDisclaimerChecked ? 'border-blue-500 bg-blue-50/30' : 'border-gray-200'}`}>
               <div className="pt-1">
@@ -347,22 +319,28 @@ export default function WelcomePopup() {
               </span>
             </label>
 
-            <div className="mt-8 flex items-center gap-4">
+            <div className="mt-8 flex flex-col sm:flex-row items-center gap-4">
               <button
                 onClick={handleAcceptDisclaimer}
                 disabled={!isDisclaimerChecked}
-                className={`flex-1 text-white py-3 px-6 rounded-full font-bold tracking-widest uppercase transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-400 ${
-                  isDisclaimerChecked ? `bg-[#d4af37] opacity-90 hover:opacity-100` : 'bg-gray-400'
+                className={`flex-1 w-full text-white py-3 px-6 rounded-full font-bold tracking-widest uppercase transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-400 ${
+                  isDisclaimerChecked ? 'bg-[#0b182b] opacity-90 hover:opacity-100' : 'bg-gray-400'
                 }`}
               >
                 {t('disclaimer_popup.understand')}
               </button>
               <button
                 onClick={handleLeaveSite}
-                className="text-gray-600 font-medium hover:text-gray-900 px-4"
+                className="flex-1 w-full py-3 px-6 rounded-full font-bold tracking-widest uppercase transition-all bg-gray-200 text-gray-700 hover:bg-gray-300"
               >
                 {t('disclaimer_popup.leave')}
               </button>
+            </div>
+            
+            <div className="mt-6 text-sm text-gray-500">
+              <a href="/terms-of-service" className="underline hover:text-gray-900">
+                {t('disclaimer_popup.terms_note')}
+              </a>
             </div>
           </div>
         )}
