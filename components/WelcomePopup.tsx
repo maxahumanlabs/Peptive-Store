@@ -290,7 +290,7 @@ export default function WelcomePopup() {
               {t('disclaimer_popup.desc').replace('{brand}', brandName)}
             </p>
 
-            <ul className="space-y-4 mb-8 text-gray-700 text-base">
+            <ul className="space-y-4 mb-8 text-gray-700 text-base max-h-[160px] overflow-y-auto pr-2 custom-scrollbar">
               <li className={`flex gap-3 items-start ${isRTL ? 'flex-row-reverse' : ''}`}>
                 <span className="text-blue-500 mt-1.5 text-xs">●</span>
                 <span>
