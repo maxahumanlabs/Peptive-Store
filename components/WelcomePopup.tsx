@@ -132,7 +132,11 @@ export default function WelcomePopup() {
     localStorage.setItem('disclaimerAccepted', 'true');
     const isFormCompleted = localStorage.getItem(STORAGE_KEY) === 'true';
     if (!isFormCompleted) {
-      setStep('form');
+      setIsOpen(false);
+      setTimeout(() => {
+        setStep('form');
+        setIsOpen(true);
+      }, 5000);
     } else {
       handleClose();
     }
