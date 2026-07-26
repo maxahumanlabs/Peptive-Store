@@ -247,12 +247,12 @@ export default function WelcomePopup() {
       <div className={`relative bg-white rounded-2xl shadow-2xl max-w-[480px] w-[90%] p-10 sm:p-12 text-center ${isRTL ? 'rtl' : ''}`}>
         <button
           onClick={handleClose}
-          className={`absolute top-4 ${isRTL ? 'left-4' : 'right-4'} text-3xl text-gray-500 hover:text-black transition-colors z-10`}
+          className="absolute top-4 end-4 text-3xl text-gray-500 hover:text-black transition-colors z-10"
         >
           &times;
         </button>
 
-        <div className={`absolute top-4 ${isRTL ? 'right-4' : 'left-4'} flex items-center gap-1 bg-gray-100 rounded-lg p-1 w-max`}>
+        <div className="absolute top-4 start-4 flex items-center gap-1 bg-gray-100 rounded-lg p-1 w-max">
           <button
             onClick={() => setLanguage('en')}
             className={`px-3 py-1.5 rounded-md text-sm font-medium whitespace-nowrap transition-all ${
@@ -272,8 +272,8 @@ export default function WelcomePopup() {
         </div>
 
         {step === 'disclaimer' && (
-          <div className={`mt-10 sm:mt-8 text-${isRTL ? 'right' : 'left'}`}>
-            <div className={`flex items-center gap-2 mb-6 ${isRTL ? 'flex-row-reverse' : ''}`}>
+          <div className="mt-10 sm:mt-8 text-start">
+            <div className="flex items-center gap-2 mb-6">
               <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-600">
                 <CheckCircleIcon className="w-5 h-5" />
               </div>
@@ -282,7 +282,7 @@ export default function WelcomePopup() {
               </span>
             </div>
 
-            <h2 className={`text-3xl sm:text-4xl font-bold text-gray-900 mb-6 ${isRTL ? 'text-right' : 'text-left'}`}>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6 text-start">
               {t('disclaimer_popup.title')}
             </h2>
 
@@ -291,27 +291,27 @@ export default function WelcomePopup() {
             </p>
 
             <ul className="space-y-4 mb-8 text-gray-700 text-base max-h-[160px] overflow-y-auto pr-2 custom-scrollbar">
-              <li className={`flex gap-3 items-start ${isRTL ? 'flex-row-reverse' : ''}`}>
+              <li className="flex gap-3 items-start">
                 <span className="text-blue-500 mt-1.5 text-xs">●</span>
                 <span>
                   <strong>{t('disclaimer_popup.li1_strong')}</strong>
                   {t('disclaimer_popup.li1')}
                 </span>
               </li>
-              <li className={`flex gap-3 items-start ${isRTL ? 'flex-row-reverse' : ''}`}>
+              <li className="flex gap-3 items-start">
                 <span className="text-blue-500 mt-1.5 text-xs">●</span>
                 <span>
                   <strong>{t('disclaimer_popup.li2_strong')}</strong>
                   {t('disclaimer_popup.li2')}
                 </span>
               </li>
-              <li className={`flex gap-3 items-start ${isRTL ? 'flex-row-reverse' : ''}`}>
+              <li className="flex gap-3 items-start">
                 <span className="text-blue-500 mt-1.5 text-xs">●</span>
                 <span>
                   {t('disclaimer_popup.li3')}
                 </span>
               </li>
-              <li className={`flex gap-3 items-start ${isRTL ? 'flex-row-reverse' : ''}`}>
+              <li className="flex gap-3 items-start">
                 <span className="text-blue-500 mt-1.5 text-xs">●</span>
                 <span>
                   <strong>{t('disclaimer_popup.li4_strong')}</strong>
@@ -320,7 +320,7 @@ export default function WelcomePopup() {
               </li>
             </ul>
 
-            <label className={`flex items-start gap-4 p-4 border rounded-xl cursor-pointer hover:bg-gray-50 transition-colors ${isDisclaimerChecked ? 'border-blue-500 bg-blue-50/30' : 'border-gray-200'} ${isRTL ? 'flex-row-reverse text-right' : ''}`}>
+            <label className={`flex items-start gap-4 p-4 border rounded-xl cursor-pointer hover:bg-gray-50 transition-colors ${isDisclaimerChecked ? 'border-blue-500 bg-blue-50/30' : 'border-gray-200'}`}>
               <div className="pt-1">
                 <div className={`w-5 h-5 border-2 rounded flex items-center justify-center transition-colors ${isDisclaimerChecked ? 'border-blue-600 bg-blue-600 text-white' : 'border-gray-300'}`}>
                   {isDisclaimerChecked && <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>}
@@ -339,7 +339,7 @@ export default function WelcomePopup() {
               </span>
             </label>
 
-            <div className={`mt-8 flex items-center gap-4 ${isRTL ? 'flex-row-reverse' : ''}`}>
+            <div className="mt-8 flex items-center gap-4">
               <button
                 onClick={handleAcceptDisclaimer}
                 disabled={!isDisclaimerChecked}
@@ -389,11 +389,11 @@ export default function WelcomePopup() {
                     nameError ? 'border-red-500 bg-red-50' : 'border-gray-200'
                   }`}
                 />
-                {nameError && <div className={`text-red-500 text-sm mt-2 ${isRTL ? 'text-right' : 'text-left'}`}>{nameError}</div>}
+                {nameError && <div className={`text-red-500 text-sm mt-2 text-start`}>{nameError}</div>}
               </div>
 
               <div>
-                <div className={`flex gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                <div className="flex gap-2">
                   <div className="min-w-[75px]">
                     <select
                       value={countryCode}
@@ -424,7 +424,7 @@ export default function WelcomePopup() {
                     />
                   </div>
                 </div>
-                {phoneError && <div className={`text-red-500 text-sm mt-2 ${isRTL ? 'text-right' : 'text-left'}`}>{phoneError}</div>}
+                {phoneError && <div className={`text-red-500 text-sm mt-2 text-start`}>{phoneError}</div>}
               </div>
 
               <div>
@@ -440,7 +440,7 @@ export default function WelcomePopup() {
                     emailError ? 'border-red-500 bg-red-50' : 'border-gray-200'
                   }`}
                 />
-                {emailError && <div className={`text-red-500 text-sm mt-2 ${isRTL ? 'text-right' : 'text-left'}`}>{emailError}</div>}
+                {emailError && <div className={`text-red-500 text-sm mt-2 text-start`}>{emailError}</div>}
               </div>
 
               <button
