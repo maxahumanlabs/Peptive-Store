@@ -10,7 +10,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 const CATEGORY = 'oral';
 
 export default function OralPeptidesPage() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [sortBy, setSortBy] = useState<string>('menu_order');
@@ -95,27 +95,36 @@ export default function OralPeptidesPage() {
         ) : products.length > 0 ? (
           <>
             {/* Sorting Dropdown & Showing count */}
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
-              <div className="text-gray-400 text-sm">
-                {t('oral_peptides.showing')} {sortedProducts.length} {sortedProducts.length === 1 ? t('oral_peptides.product') : t('oral_peptides.products')}
+            <div className="flex flex-row justify-between items-center gap-4 mb-8 w-full">
+              <div className="text-gray-400 text-xs">
+                {language === 'ar'
+                  ? `${sortedProducts.length} منتج`
+                  : `${sortedProducts.length} ${sortedProducts.length === 1 ? t('oral_peptides.product') : t('oral_peptides.products')}`}
               </div>
-              <div className="flex items-center gap-2 w-full sm:w-auto">
-                <label htmlFor="sort-select" className="text-sm font-medium text-gray-300 shrink-0">
+              <div className="flex items-center gap-3">
+                <label htmlFor="sort-select" className="text-xs font-medium text-gray-400 shrink-0">
                   {t('products.sort_by')}:
                 </label>
-                <select
-                  id="sort-select"
-                  value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value)}
-                  className="bg-zinc-950 text-white text-sm rounded-lg border border-zinc-800 focus:ring-1 focus:ring-white focus:border-white block w-full sm:w-48 p-2.5 outline-none transition-colors cursor-pointer"
-                >
-                  <option value="menu_order">{t('products.sort_recommended')}</option>
-                  <option value="price-asc">{t('products.sort_price_asc')}</option>
-                  <option value="price-desc">{t('products.sort_price_desc')}</option>
-                  <option value="latest">{t('products.sort_latest')}</option>
-                  <option value="oldest">{t('products.sort_oldest')}</option>
-                  <option value="rating">{t('products.sort_rating')}</option>
-                </select>
+                <div className="relative w-48 sm:w-52">
+                  <select
+                    id="sort-select"
+                    value={sortBy}
+                    onChange={(e) => setSortBy(e.target.value)}
+                    className="appearance-none w-full bg-[#1f1f1f] hover:bg-zinc-800 text-white text-xs rounded-full border border-zinc-800 focus:border-zinc-500 focus:outline-none py-2.5 pl-4 pr-10 rtl:pl-10 rtl:pr-4 transition-all duration-300 cursor-pointer shadow-md"
+                  >
+                    <option value="menu_order">{t('products.sort_recommended')}</option>
+                    <option value="price-asc">{t('products.sort_price_asc')}</option>
+                    <option value="price-desc">{t('products.sort_price_desc')}</option>
+                    <option value="latest">{t('products.sort_latest')}</option>
+                    <option value="oldest">{t('products.sort_oldest')}</option>
+                    <option value="rating">{t('products.sort_rating')}</option>
+                  </select>
+                  <div className="pointer-events-none absolute inset-y-0 right-0 pr-3.5 rtl:left-0 rtl:pl-3.5 rtl:right-auto flex items-center text-gray-400">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
+                </div>
               </div>
             </div>
 
