@@ -4,12 +4,12 @@ import { useState, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 const CheckCircleIcon = ({ className }: { className?: string }) => ( <svg className={className} xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'><path d='M22 11.08V12a10 10 0 1 1-5.93-9.14'></path><polyline points='22 4 12 14.01 9 11.01'></polyline></svg> );
 
-const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfAhFwhiEQNOQqhKMYYsFfmi2eeh0nahSx1LDW9gR-dY8WbjA/formResponse';
+const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScZnWJifV_1KGneickJJps2Tj1RqUU1pA_Q37G-4qD4ji3eAg/formResponse';
 const FORM_FIELD_IDS = {
-  name: 'entry.1555006274',
-  phone: 'entry.896086746',
-  country: 'entry.27555157',
-  timestamp: 'entry.1286999267',
+  name: 'entry.2005620554',
+  phone: 'entry.1166974658',
+  country: 'entry.346256966',
+  timestamp: 'entry.1045781291',
 };
 
 const STORAGE_KEY = 'entryGateCompleted';
@@ -114,11 +114,8 @@ export default function WelcomePopup() {
     const isFormCompleted = localStorage.getItem(STORAGE_KEY) === 'true';
 
     const timer = setTimeout(() => {
-      if (!isDisclaimerAccepted) {
-        setStep('disclaimer');
-        setIsOpen(true);
-        document.body.style.overflow = 'hidden';
-      } else if (!isFormCompleted) {
+      // Temporarily skip age disclaimer and show only the lead capture form if not completed.
+      if (!isFormCompleted) {
         setStep('form');
         setIsOpen(true);
         document.body.style.overflow = 'hidden';
