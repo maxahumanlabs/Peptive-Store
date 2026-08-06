@@ -8,6 +8,8 @@ import AnnouncementBar from '@/components/layout/AnnouncementBar';
 import WelcomePopup from '@/components/WelcomePopup';
 import WhatsAppButton from '@/components/layout/WhatsAppButton';
 import { LanguageProvider } from '@/contexts/LanguageContext';
+import GoogleAnalytics from '@/components/analytics/GoogleAnalytics';
+import MetaPixel from '@/components/analytics/MetaPixel';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -52,6 +54,8 @@ export default function RootLayout({
           <WhatsAppButton />
           <WelcomePopup />
         </div>
+        <GoogleAnalytics />
+        <MetaPixel />
         </LanguageProvider>
       </body>
     </html>

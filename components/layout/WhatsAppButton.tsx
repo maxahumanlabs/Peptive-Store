@@ -6,8 +6,8 @@ export default function WhatsAppButton() {
   const { language } = useLanguage();
   
   const message = language === 'ar' 
-    ? 'مرحباً! أود الاستفسار عن منتجات Peptive'
-    : 'Hello! I would like to inquire about Peptive products';
+    ? 'مرحبا، حابب أطلب البيبتايد الخاص فيكم'
+    : 'Hello, I would like to order your products.';
 
   return (
     <div className="fixed bottom-4 left-4 z-50 flex items-center justify-center">
